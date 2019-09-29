@@ -2,7 +2,8 @@ import React from "react"
 import styled from "styled-components"
 
 const HamburgerWrap = styled.div`
-  position: absolute;
+  position: fixed;
+  overflow: hidden;
   top: 0;
   right: 0;
   z-index: 1000;
