@@ -3,8 +3,9 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
+// Optional background color: #11111;
 const HeaderWrapper = styled.header`
-  background: #111111;
+  background: #f5f8fa;
   margin-bottom: 1.45rem;
 `
 
@@ -43,7 +44,6 @@ const NavList = styled.nav`
 const Spacer = styled.div`
   flex: 1;
 `
-//#419eda
 const StyledLink = styled(props => <Link {...props} />)`
   padding: 0.5rem 0;
   position: relative;
@@ -59,7 +59,7 @@ const StyledLink = styled(props => <Link {...props} />)`
     position: absolute;
     width: 100%;
     height: 1px;
-    background-color: white;
+    background-color: #419eda;
     left: 0;
     transform: scaleX(0);
     transition: all 0.25s;
