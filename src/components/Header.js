@@ -43,7 +43,7 @@ const NavList = styled.nav`
 const Spacer = styled.div`
   flex: 1;
 `
-
+//#419eda
 const StyledLink = styled(props => <Link {...props} />)`
   padding: 0.5rem 0;
   position: relative;
@@ -59,7 +59,7 @@ const StyledLink = styled(props => <Link {...props} />)`
     position: absolute;
     width: 100%;
     height: 1px;
-    background-color: #419eda;
+    background-color: white;
     left: 0;
     transform: scaleX(0);
     transition: all 0.25s;
