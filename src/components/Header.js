@@ -5,7 +5,7 @@ import styled from "styled-components"
 
 // Optional background color: #11111;
 const HeaderWrapper = styled.header`
-  background: #f5f8fa;
+  background: #11111;
   margin-bottom: 1.45rem;
 `
 
@@ -108,7 +108,7 @@ const Header = ({ siteTitle, menuLinks }) => (
                 }}
               >
                 <StyledLink activeClassName="active" to={link.link}>
-                  {link.name}
+                  {link.name != "Home" ? link.name : ""}
                 </StyledLink>
               </li>
             ))}
