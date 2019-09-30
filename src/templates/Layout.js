@@ -32,6 +32,7 @@ const menuLinks = [
 const Layout = ({ children }) => {
   const [open, setOpen] = useState(false)
   const toggleOpen = () => setOpen(!open)
+  // Old background color: "#f5f8fa"
 
   return (
     <React.Fragment>
@@ -49,7 +50,7 @@ const Layout = ({ children }) => {
           },
         ]}
       ></Helmet>
-      <div style={{ height: "100%", background: "#f5f8fa" }}>
+      <div style={{ height: "100%", background: "white" }}>
         <Header
           drawerClickHandler={toggleOpen}
           siteTitle={siteTitle}
@@ -68,7 +69,7 @@ const Layout = ({ children }) => {
         )}
         <div
           style={{
-            background: "#f5f8fa",
+            background: "white",
           }}
         >
           {children}

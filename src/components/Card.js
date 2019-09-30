@@ -5,10 +5,10 @@ import Image from "gatsby-image"
 
 const CardStyle = styled.article`
   width: 350px;
-  height: 550px;
+  height: 450px;
   margin: 1em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: all 0.5s;
+  transition: all 0.25s;
 
   &:hover {
     transform: scale(1.1);
@@ -16,7 +16,6 @@ const CardStyle = styled.article`
   }
 
   div {
-    margin: 10px 5px;
     max-height: 500px;
   }
   div .image {
@@ -30,9 +29,17 @@ const CardStyle = styled.article`
 `
 
 const Content = styled.div`
+  margin-top: 1em;
+  margin-left: 1em;
   overflow: hidden;
 `
 
+const StyledLink = styled(props => <Link {...props} />)`
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+`
 // width: "300px", height: "200px", margin: "1em"
 
 const Card = ({ post }) => {
@@ -43,27 +50,26 @@ const Card = ({ post }) => {
   let { slug } = post.fields
 
   return (
-    <CardStyle>
-      <div>
-        <div className="image">
-          <Link to={slug}>
-            <Image className="" fluid={featuredImgFluid} />
-          </Link>
-        </div>
-        <Content>
-          <div>
-            <h2>{title}</h2>
-            <h5>
-              <span>by {author}</span> - <span>{date}</span>
-            </h5>
-            <p>{excerpt}</p>
-            <Link to={slug} className="">
-              Read More...
+    <StyledLink to={slug}>
+      <CardStyle>
+        <div>
+          <div className="image">
+            <Link to={slug}>
+              <Image className="" fluid={featuredImgFluid} />
             </Link>
           </div>
-        </Content>
-      </div>
-    </CardStyle>
+          <Content>
+            <div>
+              <h2>{title}</h2>
+              <h6>
+                <span>by {author}</span> - <span>{date}</span>
+              </h6>
+              <h4>{excerpt}</h4>
+            </div>
+          </Content>
+        </div>
+      </CardStyle>
+    </StyledLink>
   )
 }
 

@@ -6,7 +6,6 @@ import styled from "styled-components"
 // Optional background color: #11111;
 const HeaderWrapper = styled.header`
   background: #11111;
-  margin-bottom: 1.45rem;
 `
 
 const HeaderContainer = styled.div`
@@ -20,8 +19,8 @@ const HeaderContainer = styled.div`
 `
 
 const LogoHeader = styled.h1`
-  margin-left: 1rem;
   color: #12334f;
+  margin-bottom: 0;
   text-decoration: none;
 
   &:hover {

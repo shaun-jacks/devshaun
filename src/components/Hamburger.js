@@ -11,7 +11,7 @@ const HamburgerWrap = styled.div`
   width: 50px;
   height: 50px;
   transition: 0.25s;
-  margin-top: 2em;
+  margin-top: 1.5em;
   margin-right: 2em;
   transition: all 0.25s;
 

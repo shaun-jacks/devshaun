@@ -16,7 +16,7 @@ export default function PageTemplate({ data: { mdx } }) {
       >
         <div style={{ flex: ".05" }} />
         <div style={{ flex: "1", maxWidth: "700px" }}>
-          <h1>{mdx.frontmatter.title}</h1>
+          <h1 style={{ marginTop: ".5em" }}>{mdx.frontmatter.title}</h1>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </div>
         <div style={{ flex: ".05" }} />
