@@ -14,12 +14,12 @@ export default function PageTemplate({ data: { mdx } }) {
           width: "100%",
         }}
       >
-        <div style={{ flex: ".5" }} />
-        <div style={{ flex: "1", maxWidth: "500px" }}>
+        <div style={{ flex: ".05" }} />
+        <div style={{ flex: "1", maxWidth: "700px" }}>
           <h1>{mdx.frontmatter.title}</h1>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </div>
-        <div style={{ flex: ".5" }} />
+        <div style={{ flex: ".05" }} />
       </div>
     </Layout>
   )
