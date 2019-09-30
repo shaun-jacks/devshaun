@@ -4,6 +4,7 @@ import Header from "../components/Header"
 import SideDrawer from "../components/SideDrawer"
 import Backdrop from "../components/Backdrop"
 import Hamburger from "../components/Hamburger"
+import { scale, rhythm } from "../utils/typography"
 
 const siteTitle = "Dev Shaun"
 const menuLinks = [
@@ -67,7 +68,16 @@ const Layout = ({ children }) => {
             <Backdrop toggleDrawer={toggleOpen} />
           </div>
         )}
-        <div style={{}}>{children}</div>
+        <div
+          style={{
+            marginLeft: `auto`,
+            marginRight: `auto`,
+            maxWidth: rhythm(24),
+            padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+          }}
+        >
+          {children}
+        </div>
       </div>
     </React.Fragment>
   )
