@@ -1,6 +1,8 @@
 ---
+author: "Shaun Jackson"
 title: "Second Post!"
-date: "2017-08-10"
+date: "2019-01-02"
+featuredImage: ./featured-images/featured-image-blog2.jpg
 tags: ["test1", "test2"]
 ---
 

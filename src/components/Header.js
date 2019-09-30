@@ -108,7 +108,7 @@ const Header = ({ siteTitle, menuLinks }) => (
                 }}
               >
                 <StyledLink activeClassName="active" to={link.link}>
-                  {link.name != "Home" ? link.name : ""}
+                  {link.name !== "Home" ? link.name : ""}
                 </StyledLink>
               </li>
             ))}

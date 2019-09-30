@@ -20,7 +20,7 @@ export default ({ data }) => {
     <Layout>
       <BlogWrapper>
         {data.allMarkdownRemark.edges.map(({ node }) => (
-          <Card></Card>
+          <Card key={node.id} post={node}></Card>
         ))}
       </BlogWrapper>
     </Layout>
@@ -36,6 +36,14 @@ export const query = graphql`
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
+            author
+            featuredImage {
+              childImageSharp {
+                fluid(maxWidth: 350) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
           excerpt
         }

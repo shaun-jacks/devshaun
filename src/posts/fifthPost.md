@@ -1,6 +1,8 @@
 ---
+author: "Shaun Jackson"
 title: "Fifth Blog Post!"
-date: "2017-08-10"
+date: "2019-01-05"
+featuredImage: ./featured-images/featured-image-blog5.png
 tags: ["test1", "test2"]
 ---
 

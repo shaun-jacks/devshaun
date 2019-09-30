@@ -5,36 +5,48 @@ import Image from "gatsby-image"
 
 const CardStyle = styled.article`
   width: 350px;
-  height: 500px;
+  height: 550px;
   margin: 1em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.5s;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
 
   div {
-    margin: 5px;
+    margin: 10px 5px;
+    max-height: 500px;
+  }
+  div .image {
+    max-height: 233px;
+  }
+  div .image .gatsby-image-wrapper {
+    max-height: 233px;
   }
 `
 
 // width: "300px", height: "200px", margin: "1em"
 
-const Card = () => {
-  //const { title, date, author, slug } = post.frontmattter
+const Card = ({ post }) => {
+  console.log(post)
+  let { date, title, author } = post.frontmatter
+  let { excerpt } = post
+  let featuredImgFluid = post.frontmatter.featuredImage.childImageSharp.fluid
   return (
     <CardStyle>
       <div>
-        <div className="image"></div>
+        <div className="image">
+          <Image className="" fluid={featuredImgFluid} />
+        </div>
         <div className="content">
           <div>
-            <h2>Post Title</h2>
+            <h2>{title}</h2>
             <h5>
-              <span>by Shaun</span> /<span>September 29th, 2019</span>
+              <span>by {author}</span> - <span>{date}</span>
             </h5>
-            <h6>An example post right here, hopefully it fits </h6>
+            <p>{excerpt}</p>
             <Link to="/" className="">
               read more
             </Link>
