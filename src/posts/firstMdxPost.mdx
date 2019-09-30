@@ -10,7 +10,7 @@ This is my first blog post!
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
 
-# h1 Heading 8-)
+# h1 Heading
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
 
@@ -42,13 +42,55 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
 
----
+### Javascript Code
 
-<script src="https://gist.github.com/shaun-jacks/8aec8982a91eb5e7b263681563cfaac5.js"></script>
+Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 
----
+```js
+const Hamburger = ({ click, isOpen }) => {
+  return (
+    <HamburgerWrap onClick={click} className={isOpen ? "active" : ""}>
+      <span></span>
+      <span></span>
+      <span></span>
+    </HamburgerWrap>
+  )
+}
+
+export default Hamburger
+
+export default Card
+```
+
+<br />
+
+### R Code
+
+Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+
+```r
+df = read.csv("../data.csv")
+lapply(df, table(x))
+```
+
+<br />
+
+### Python Code
+
+Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+
+```py
+counts = [0] * len(A)
+for i in range(len(A)):
+  counts += counts[A[i]]
+return [x for elem in counts elem > 0 ]
+```
+
+<br />
 
 ## Typographic replacements
+
+---
 
 Enable typographer option to see result.
 
@@ -117,7 +159,7 @@ Start numbering with offset:
 
 ## Code
 
-Inline `code`
+Inline `let x = 25;`
 
 Indented code
 
@@ -134,7 +176,7 @@ Sample text here...
 
 Syntax highlighting
 
-```
+```js
 var foo = function(bar) {
   return bar++
 }

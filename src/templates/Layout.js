@@ -50,7 +50,7 @@ const Layout = ({ children }) => {
           },
         ]}
       ></Helmet>
-      <div style={{ height: "100%", background: "white" }}>
+      <div style={{ height: "100%" }}>
         <Header
           drawerClickHandler={toggleOpen}
           siteTitle={siteTitle}
@@ -67,13 +67,7 @@ const Layout = ({ children }) => {
             <Backdrop toggleDrawer={toggleOpen} />
           </div>
         )}
-        <div
-          style={{
-            background: "white",
-          }}
-        >
-          {children}
-        </div>
+        <div style={{}}>{children}</div>
       </div>
     </React.Fragment>
   )

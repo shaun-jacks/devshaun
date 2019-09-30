@@ -41,6 +41,20 @@ module.exports = {
         path: `${__dirname}/src/posts/`,
       },
     },
-    `gatsby-plugin-mdx`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: `language-javascript`,
+              inlineCodeMarker: null,
+            },
+          },
+        ],
+      },
+    },
   ],
 }
