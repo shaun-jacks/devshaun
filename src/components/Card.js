@@ -22,9 +22,15 @@ const CardStyle = styled.article`
   div .image {
     max-height: 233px;
   }
+  div .image:hover {
+  }
   div .image .gatsby-image-wrapper {
     max-height: 233px;
   }
+`
+
+const Content = styled.div`
+  overflow: hidden;
 `
 
 // width: "300px", height: "200px", margin: "1em"
@@ -38,9 +44,11 @@ const Card = ({ post }) => {
     <CardStyle>
       <div>
         <div className="image">
-          <Image className="" fluid={featuredImgFluid} />
+          <Link to="/">
+            <Image className="" fluid={featuredImgFluid} />
+          </Link>
         </div>
-        <div className="content">
+        <Content>
           <div>
             <h2>{title}</h2>
             <h5>
@@ -48,10 +56,10 @@ const Card = ({ post }) => {
             </h5>
             <p>{excerpt}</p>
             <Link to="/" className="">
-              read more
+              Read More...
             </Link>
           </div>
-        </div>
+        </Content>
       </div>
     </CardStyle>
   )
