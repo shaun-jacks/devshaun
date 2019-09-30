@@ -37,10 +37,10 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `markdownPages`,
+        name: `posts`,
         path: `${__dirname}/src/posts/`,
       },
     },
-    `gatsby-transformer-remark`,
+    `gatsby-plugin-mdx`,
   ],
 }

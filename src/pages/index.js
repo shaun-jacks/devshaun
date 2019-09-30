@@ -19,7 +19,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <BlogWrapper>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
+        {data.allMdx.edges.map(({ node }) => (
           <Card key={node.id} post={node}></Card>
         ))}
       </BlogWrapper>
@@ -28,7 +28,7 @@ export default ({ data }) => {
 }
 export const query = graphql`
   query {
-    allMarkdownRemark {
+    allMdx {
       totalCount
       edges {
         node {
@@ -44,6 +44,9 @@ export const query = graphql`
                 }
               }
             }
+          }
+          fields {
+            slug
           }
           excerpt
         }

@@ -11,7 +11,7 @@ const CardStyle = styled.article`
   transition: all 0.5s;
 
   &:hover {
-    transform: scale(1.01);
+    transform: scale(1.1);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
 
@@ -40,11 +40,13 @@ const Card = ({ post }) => {
   let { date, title, author } = post.frontmatter
   let { excerpt } = post
   let featuredImgFluid = post.frontmatter.featuredImage.childImageSharp.fluid
+  let { slug } = post.fields
+
   return (
     <CardStyle>
       <div>
         <div className="image">
-          <Link to="/">
+          <Link to={slug}>
             <Image className="" fluid={featuredImgFluid} />
           </Link>
         </div>
@@ -55,7 +57,7 @@ const Card = ({ post }) => {
               <span>by {author}</span> - <span>{date}</span>
             </h5>
             <p>{excerpt}</p>
-            <Link to="/" className="">
+            <Link to={slug} className="">
               Read More...
             </Link>
           </div>
