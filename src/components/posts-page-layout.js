@@ -7,7 +7,6 @@ import { scale, rhythm } from "../utils/typography"
 export default function PageTemplate({ data: { mdx } }) {
   return (
     <Layout>
-      <h1 style={{ marginTop: ".5em" }}>{mdx.frontmatter.title}</h1>
       <div
         style={{
           marginLeft: `auto`,
@@ -16,6 +15,7 @@ export default function PageTemplate({ data: { mdx } }) {
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
+        <h1 style={{ marginTop: ".5em" }}>{mdx.frontmatter.title}</h1>
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </div>
     </Layout>
