@@ -16,7 +16,7 @@ const CardContent = styled.div`
 
   &:hover {
     transform: scale(1.1);
-    box-shadow: 0 0px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
   }
   display: flex;
   align-items: flex-start;
@@ -24,6 +24,7 @@ const CardContent = styled.div`
   .image {
     flex: 1;
     margin-right: 1em;
+    z-index: 1;
   }
   .info {
     flex: 2;
@@ -47,22 +48,22 @@ const Card = ({ post }) => {
 
   return (
     <CardWrapper>
-      <CardContent>
-        <div className="image">
-          <Link to={slug}>
-            <Image fluid={featuredImgFluid} />
-          </Link>
-        </div>
-        <div className="info">
-          <StyledLink to={slug}>
+      <StyledLink to={slug}>
+        <CardContent>
+          <div className="image">
+            <Link to={slug}>
+              <Image fluid={featuredImgFluid} />
+            </Link>
+          </div>
+          <div className="info">
             <h2>{title}</h2>
             <h4>{excerpt}</h4>
-          </StyledLink>
-          <h6>
-            <span>{author}</span> - <span>{date}</span>
-          </h6>
-        </div>
-      </CardContent>
+            <h6>
+              <span>{author}</span> - <span>{date}</span>
+            </h6>
+          </div>
+        </CardContent>
+      </StyledLink>
     </CardWrapper>
   )
 }

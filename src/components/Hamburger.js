@@ -14,6 +14,7 @@ const HamburgerWrap = styled.div`
   margin-top: 1.5em;
   margin-right: 2em;
   transition: all 0.25s;
+  z-index: 9999;
 
   &:hover {
     transform: scale(1.1);
@@ -29,7 +30,7 @@ const HamburgerWrap = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 0.25s;
-    z-index: 1000;
+    z-index: 9999;
   }
   &:hover {
     color: #2a6496;

@@ -51,11 +51,7 @@ const Layout = ({ children }) => {
         ]}
       ></Helmet>
       <div style={{ height: "100%" }}>
-        <Header
-          drawerClickHandler={toggleOpen}
-          siteTitle={siteTitle}
-          menuLinks={menuLinks}
-        />
+        <Header drawerOpen={open} siteTitle={siteTitle} menuLinks={menuLinks} />
         <Hamburger click={toggleOpen} isOpen={open} />
         <SideDrawer
           drawerClickHandler={toggleOpen}

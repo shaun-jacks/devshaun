@@ -1,11 +1,25 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
 // Optional background color: #11111;
-const HeaderWrapper = styled.header`
-  background: #11111;
+const HeaderWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+  background: white;
+  z-index: 9998;
+  transition: all 0.5s;
+
+  &.open {
+    opacity: 1;
+  }
+  &.closed {
+    opacity: 0;
+  }
 `
 
 const HeaderContainer = styled.div`
@@ -16,6 +30,7 @@ const HeaderContainer = styled.div`
   justify-items: space-between;
   justify-content: center;
   align-items: center;
+  transition: 0.1s;
 `
 
 const LogoHeader = styled.h1`
@@ -80,43 +95,69 @@ const StyledLink = styled(props => <Link {...props} />)`
   }
 `
 
-const Header = ({ siteTitle, menuLinks }) => (
-  <HeaderWrapper>
-    <HeaderContainer>
-      <LogoHeader>
-        <Link
-          to="/"
-          style={{
-            textDecoration: "none",
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </LogoHeader>
-      <Spacer />
-      <div>
-        <nav>
-          <NavList>
-            {menuLinks.map(link => (
-              <li
-                key={link.name}
-                style={{
-                  listStyleType: `none`,
-                  padding: `0rem 1rem`,
-                  color: "#001E30",
-                }}
-              >
-                <StyledLink activeClassName="active" to={link.link}>
-                  {link.name !== "Home" ? link.name : ""}
-                </StyledLink>
-              </li>
-            ))}
-          </NavList>
-        </nav>
-      </div>
-    </HeaderContainer>
-  </HeaderWrapper>
-)
+const Header = ({ siteTitle, menuLinks, drawerOpen }) => {
+  let [open, setOpen] = useState(true)
+  // Reference:
+  // https://lxieyang.github.io/blogs/tech-2018-08-18-reactstrap-gatsby-auto-hiding-navbar-trick/
+  //  adapted for functional components:
+  if (typeof window !== "undefined") {
+    let prevScrollpos = window.pageYOffset
+    window.onscroll = function() {
+      const maxScroll = document.body.clientHeight - window.innerHeight
+      let currentScrollPos = window.pageYOffset
+      if (
+        (maxScroll > 0 &&
+          prevScrollpos > currentScrollPos &&
+          prevScrollpos <= maxScroll) ||
+        (maxScroll <= 0 && prevScrollpos > currentScrollPos) ||
+        (prevScrollpos <= 0 && currentScrollPos <= 0)
+      ) {
+        setOpen(true)
+      } else {
+        setOpen(false)
+      }
+      prevScrollpos = currentScrollPos
+    }
+  }
+
+  return (
+    <HeaderWrapper className={open && !drawerOpen ? "open" : "closed"}>
+      <HeaderContainer>
+        <LogoHeader>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+            }}
+          >
+            {siteTitle}
+          </Link>
+        </LogoHeader>
+        <Spacer />
+        <div>
+          <nav>
+            <NavList>
+              {menuLinks.map(link => (
+                <li
+                  key={link.name}
+                  style={{
+                    listStyleType: `none`,
+                    padding: `0rem 1rem`,
+                    color: "#001E30",
+                  }}
+                >
+                  <StyledLink activeClassName="active" to={link.link}>
+                    {link.name !== "Home" ? link.name : ""}
+                  </StyledLink>
+                </li>
+              ))}
+            </NavList>
+          </nav>
+        </div>
+      </HeaderContainer>
+    </HeaderWrapper>
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
