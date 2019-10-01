@@ -25,10 +25,9 @@ const HeaderWrapper = styled.div`
 const HeaderContainer = styled.div`
   margin: 0 auto;
   max-width: 960;
-  padding: 1.45rem 1.0875rem;
+  padding: 0.5rem 1.0875rem;
   display: flex;
-  justify-items: space-between;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   transition: 0.1s;
 `
@@ -37,6 +36,7 @@ const LogoHeader = styled.h1`
   color: #12334f;
   margin-bottom: 0;
   text-decoration: none;
+  letter-spacing: 5px;
 
   &:hover {
     color: #12334f;
@@ -112,9 +112,14 @@ const Header = ({ siteTitle, menuLinks, drawerOpen }) => {
         (maxScroll <= 0 && prevScrollpos > currentScrollPos) ||
         (prevScrollpos <= 0 && currentScrollPos <= 0)
       ) {
-        setOpen(true)
+        // Control sensitivity of opening navbar again
+        if (!open && Math.abs(currentScrollPos - prevScrollpos) > 7) {
+          setOpen(true)
+        }
       } else {
-        setOpen(false)
+        if (open) {
+          setOpen(false)
+        }
       }
       prevScrollpos = currentScrollPos
     }
