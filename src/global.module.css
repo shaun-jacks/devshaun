@@ -41,7 +41,6 @@ pre[class*="language-"] {
 pre[class*="language-"] {
   width: 100%;
   max-width: 700px;
-  min-width: 200px;
   margin: auto;
   overflow: scroll;
 }
@@ -49,7 +48,6 @@ pre[class*="language-"] {
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
   background: #282a36;
-  min-width: 200px;
 }
 
 /* Inline code */
