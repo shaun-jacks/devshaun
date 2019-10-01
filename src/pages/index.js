@@ -39,7 +39,7 @@ export const query = graphql`
             author
             featuredImage {
               childImageSharp {
-                fluid(maxWidth: 350) {
+                fluid(maxWidth: 140) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -48,7 +48,7 @@ export const query = graphql`
           fields {
             slug
           }
-          excerpt
+          excerpt(pruneLength: 80)
         }
       }
     }

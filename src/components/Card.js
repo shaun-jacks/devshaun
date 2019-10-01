@@ -3,41 +3,37 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import Image from "gatsby-image"
 
-const CardStyle = styled.article`
-  width: 350px;
-  height: 450px;
+const CardWrapper = styled.article`
+  width: 80vw;
+  max-width: 800px;
+  max-height: 250px;
   margin: 1em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+`
+
+const CardContent = styled.div`
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.25s;
 
   &:hover {
     transform: scale(1.1);
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0px 16px 0 rgba(0, 0, 0, 0.2);
   }
-
-  div {
-    max-height: 500px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  .image {
+    flex: 1;
+    margin-right: 1em;
   }
-  div .image {
-    max-height: 233px;
-  }
-  div .image:hover {
-  }
-  div .image .gatsby-image-wrapper {
-    max-height: 233px;
+  .info {
+    flex: 2;
   }
 `
-
-const Content = styled.div`
-  margin-top: 1em;
-  margin-left: 1em;
-  overflow: hidden;
-`
-
 const StyledLink = styled(props => <Link {...props} />)`
   text-decoration: none;
   &:hover {
     text-decoration: none;
+    pointer: cursor;
   }
 `
 // width: "300px", height: "200px", margin: "1em"
@@ -50,26 +46,24 @@ const Card = ({ post }) => {
   let { slug } = post.fields
 
   return (
-    <StyledLink to={slug}>
-      <CardStyle>
-        <div>
-          <div className="image">
-            <Link to={slug}>
-              <Image className="" fluid={featuredImgFluid} />
-            </Link>
-          </div>
-          <Content>
-            <div>
-              <h2>{title}</h2>
-              <h6>
-                <span>by {author}</span> - <span>{date}</span>
-              </h6>
-              <h4>{excerpt}</h4>
-            </div>
-          </Content>
+    <CardWrapper>
+      <CardContent>
+        <div className="image">
+          <Link to={slug}>
+            <Image fluid={featuredImgFluid} />
+          </Link>
         </div>
-      </CardStyle>
-    </StyledLink>
+        <div className="info">
+          <StyledLink to={slug}>
+            <h2>{title}</h2>
+            <h4>{excerpt}</h4>
+          </StyledLink>
+          <h6>
+            <span>{author}</span> - <span>{date}</span>
+          </h6>
+        </div>
+      </CardContent>
+    </CardWrapper>
   )
 }
 
