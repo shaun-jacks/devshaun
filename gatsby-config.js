@@ -38,7 +38,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `posts`,
-        path: `${__dirname}/src/posts/`,
+        path: `${__dirname}/content/blog/`,
       },
     },
     {
@@ -51,19 +51,6 @@ module.exports = {
             options: {
               classPrefix: `language-javascript`,
               inlineCodeMarker: null,
-            },
-          },
-          {
-            resolve: "gatsby-remark-embed-gist",
-            options: {
-              // Optional:
-
-              // the github handler whose gists are to be accessed
-              username: "shaun-jacks",
-
-              // a flag indicating whether the github default gist css should be included or not
-              // default: true
-              includeDefaultCss: true,
             },
           },
         ],
