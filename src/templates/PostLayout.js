@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-import Layout from "../templates/Layout"
+import Layout from "./Layout"
 import { scale, rhythm } from "../utils/typography"
 
 export default function PageTemplate({ data: { mdx } }) {

@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 
 // Optional background color: #11111;
-const HeaderWrapper = styled.div`
+const MenuWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@ const HeaderWrapper = styled.div`
   }
 `
 
-const HeaderContainer = styled.div`
+const MenuContainer = styled.div`
   margin: 0 auto;
   max-width: 960;
   padding: 0.5rem 1.0875rem;
@@ -95,7 +95,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   }
 `
 
-const Header = ({ siteTitle, menuLinks, drawerOpen }) => {
+const Menu = ({ siteTitle, menuLinks, drawerOpen }) => {
   let [open, setOpen] = useState(true)
   // Reference:
   // https://lxieyang.github.io/blogs/tech-2018-08-18-reactstrap-gatsby-auto-hiding-navbar-trick/
@@ -126,8 +126,8 @@ const Header = ({ siteTitle, menuLinks, drawerOpen }) => {
   }
 
   return (
-    <HeaderWrapper className={open && !drawerOpen ? "open" : "closed"}>
-      <HeaderContainer>
+    <MenuWrapper className={open && !drawerOpen ? "open" : "closed"}>
+      <MenuContainer>
         <LogoHeader>
           <Link
             to="/"
@@ -159,17 +159,17 @@ const Header = ({ siteTitle, menuLinks, drawerOpen }) => {
             </NavList>
           </nav>
         </div>
-      </HeaderContainer>
-    </HeaderWrapper>
+      </MenuContainer>
+    </MenuWrapper>
   )
 }
 
-Header.propTypes = {
+Menu.propTypes = {
   siteTitle: PropTypes.string,
 }
 
-Header.defaultProps = {
+Menu.defaultProps = {
   siteTitle: ``,
 }
 
-export default Header
+export default Menu

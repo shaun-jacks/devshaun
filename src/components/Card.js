@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import Image from "gatsby-image"
+import { rhythm } from "../utils/typography"
 
 const CardWrapper = styled.article`
   width: 80vw;
@@ -11,16 +12,17 @@ const CardWrapper = styled.article`
 `
 
 const CardContent = styled.div`
-  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-hbox-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.25s;
 
   &:hover {
     transform: scale(1.1);
     box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
   }
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+
   .image {
     flex: 1;
     margin-right: 1em;
@@ -28,6 +30,12 @@ const CardContent = styled.div`
   }
   .info {
     flex: 2;
+  }
+
+  @media (max-width: 506px) {
+     {
+      max-height: 122px;
+    }
   }
 `
 const StyledLink = styled(props => <Link {...props} />)`
@@ -56,8 +64,8 @@ const Card = ({ post }) => {
             </Link>
           </div>
           <div className="info">
-            <h2>{title}</h2>
-            <h4>{excerpt}</h4>
+            <h3 style={{ marginBottom: rhythm(0.25) }}>{title}</h3>
+            <h5 style={{ marginBottom: rhythm(0.25) }}>{excerpt}</h5>
             <h6>
               <span>{author}</span> - <span>{date}</span>
             </h6>
