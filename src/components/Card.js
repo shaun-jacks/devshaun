@@ -40,6 +40,7 @@ const CardContent = styled.div`
 `
 const StyledLink = styled(props => <Link {...props} />)`
   text-decoration: none;
+  color: slategray;
   &:hover {
     text-decoration: none;
     pointer: cursor;
@@ -65,7 +66,7 @@ const Card = ({ post }) => {
           </div>
           <div className="info">
             <h3 style={{ marginBottom: rhythm(0.25) }}>{title}</h3>
-            <h5 style={{ marginBottom: rhythm(0.25) }}>{excerpt}</h5>
+            <p style={{ marginBottom: rhythm(0.25) }}>{excerpt}</p>
             <h6>
               <span>{author}</span> - <span>{date}</span>
             </h6>

@@ -1,7 +1,9 @@
+import "../global.css"
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
+import ThemeToggle from "../components/ThemeToggle"
 
 // Optional background color: #11111;
 const MenuWrapper = styled.div`
@@ -10,9 +12,9 @@ const MenuWrapper = styled.div`
   left: 0;
   margin: auto;
   width: 100%;
-  background: white;
   z-index: 9998;
   transition: all 0.5s;
+  background: var(--bg);
 
   &.open {
     opacity: 1;
@@ -139,6 +141,7 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen }) => {
           </Link>
         </LogoHeader>
         <Spacer />
+        <ThemeToggle />
         <div>
           <nav>
             <NavList>

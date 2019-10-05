@@ -10,7 +10,7 @@ const PostWrapper = styled.div`
   width: 100%;
 `
 
-export default ({ data }) => (
+export default props => (
   <StaticQuery
     query={graphql`
       query {

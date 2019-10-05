@@ -18,6 +18,9 @@ const Header = ({ children }) => {
               "Javascript, React, Gatsby, Node, SQL, NoSQL, RDBMS, MongoDB, R",
           },
         ]}
+        bodyAttributes={{
+          class: "dark",
+        }}
       ></Helmet>
       <Navbar />
     </React.Fragment>

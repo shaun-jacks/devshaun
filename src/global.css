@@ -1,0 +1,27 @@
+html {
+  height: 100%;
+}
+
+:root {
+  --bg: white;
+  --headerNormal: black;
+  --textNormal: #419eda;
+  --textLink: #419eda;
+}
+
+body {
+  height: 100%;
+  margin-top: 2em;
+}
+
+body.light {
+  background: white;
+}
+
+body.dark {
+  --headerNormal: white;
+  --bg: black;
+  --textNormal: #419eda;
+  --textLink: #419eda;
+  background: black;
+}

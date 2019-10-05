@@ -18,6 +18,7 @@
     "babel-plugin-styled-components": "^1.10.6",
     "gatsby": "^2.15.28",
     "gatsby-image": "^2.2.23",
+    "gatsby-plugin-dark-mode": "^1.1.0",
     "gatsby-plugin-mdx": "^1.0.46",
     "gatsby-plugin-react-helmet": "^3.1.10",
     "gatsby-plugin-sharp": "^2.2.27",
@@ -29,6 +30,7 @@
     "gatsby-transformer-remark": "^2.6.26",
     "gatsby-transformer-sharp": "^2.2.19",
     "prism-react-renderer": "^1.0.1",
+    "prism-theme-night-owl": "^1.2.0",
     "prism-themes": "^1.2.0",
     "prismjs": "^1.17.1",
     "prop-types": "^15.7.2",
@@ -40,7 +42,8 @@
     "react-typography": "^0.16.19",
     "styled-components": "^4.4.0",
     "typography": "^0.16.19",
-    "typography-theme-moraga": "^0.16.19"
+    "typography-theme-moraga": "^0.16.19",
+    "typography-theme-stern-grove": "^0.16.19"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

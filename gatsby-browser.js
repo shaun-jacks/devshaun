@@ -1,6 +1,7 @@
-require("./src/global.module.css")
+require("./src/global.css")
 //require("prism-themes/themes/prism-atom-dark.css")
-require("prism-themes/themes/prism-cb.css")
+//require("prism-themes/themes/prism-cb.css")
+require("prism-theme-night-owl")
 //import "./src/global.module.css"
 
 //require("prismjs/themes/prism.css")
