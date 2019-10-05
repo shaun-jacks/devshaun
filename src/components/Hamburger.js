@@ -11,9 +11,13 @@ const HamburgerWrap = styled.div`
   height: 50px;
   transition: 0.25s;
   margin-top: 0.05em;
-  margin-right: 0em;
+  margin-right: 0.05em;
   transition: all 0.25s;
   z-index: 9999;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   span {
     position: absolute;
