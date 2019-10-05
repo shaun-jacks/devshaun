@@ -59,7 +59,7 @@ const NavList = styled.nav`
 `
 
 const Spacer = styled.div`
-  flex: 0.75;
+  flex: 0.5;
 `
 const StyledLink = styled(props => <Link {...props} />)`
   padding: 0.5rem 0;
@@ -127,43 +127,43 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
       prevScrollpos = currentScrollPos
     }
   }
+  //<Hamburger click={toggleOpen} isOpen={open} />
 
   return (
     <MenuWrapper className={fadeIn && !drawerOpen ? "open" : "closed"}>
       <MenuContainer>
-        <LogoHeader>
-          <Link
-            to="/"
-            style={{
-              textDecoration: "none",
-            }}
-          >
-            {siteTitle}
-          </Link>
-        </LogoHeader>
-        <Spacer />
-        <ThemeToggle />
-        <div>
-          <Hamburger click={toggleOpen} isOpen={open} />
-          <nav>
-            <NavList>
-              {menuLinks.map(link => (
-                <li
-                  key={link.name}
-                  style={{
-                    listStyleType: `none`,
-                    padding: `0rem 1rem`,
-                    color: "#001E30",
-                  }}
-                >
-                  <StyledLink activeClassName="active" to={link.link}>
-                    {link.name !== "Home" ? link.name : ""}
-                  </StyledLink>
-                </li>
-              ))}
-            </NavList>
-          </nav>
+        <div style={{ flex: "1" }}>
+          <LogoHeader>
+            <Link
+              to="/"
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              {siteTitle}
+            </Link>
+          </LogoHeader>
         </div>
+        <ThemeToggle />
+        <nav>
+          <NavList>
+            {menuLinks.map(link => (
+              <li
+                key={link.name}
+                style={{
+                  listStyleType: `none`,
+                  padding: `0rem 1rem`,
+                  color: "#001E30",
+                }}
+              >
+                <StyledLink activeClassName="active" to={link.link}>
+                  {link.name !== "Home" ? link.name : ""}
+                </StyledLink>
+              </li>
+            ))}
+          </NavList>
+        </nav>
+        <Spacer />
       </MenuContainer>
     </MenuWrapper>
   )

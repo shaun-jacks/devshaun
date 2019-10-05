@@ -75,7 +75,9 @@ const sideDrawer = ({ drawerClickHandler, menuLinks, isOpen }) => {
               color: "#001E30",
             }}
           >
-            <StyledLink to={link.link}>{link.name}</StyledLink>
+            <StyledLink to={link.link}>
+              {link.name !== "Home" ? link.name : ""}
+            </StyledLink>
           </li>
         ))}
       </ul>
