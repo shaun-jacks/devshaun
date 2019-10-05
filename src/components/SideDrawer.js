@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
+import "../global.css"
 const StyledLink = styled(props => <Link {...props} />)`
   padding: 0.5rem 0;
   position: relative;
@@ -40,7 +41,7 @@ const StyledLink = styled(props => <Link {...props} />)`
 
 const DrawerWrapper = styled.nav`
   height: 100%;
-  background: #f5f8fa;
+  background: var(--bg);
   box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;

@@ -6,24 +6,19 @@ const HamburgerWrap = styled.div`
   overflow: hidden;
   top: 0;
   right: 0;
-  z-index: 1000;
   cursor: pointer;
   width: 50px;
   height: 50px;
   transition: 0.25s;
-  margin-top: 0.5em;
+  margin-top: 0.05em;
   margin-right: 2em;
   transition: all 0.25s;
   z-index: 9999;
 
-  &:hover {
-    transform: scale(1.1);
-  }
-
   span {
     position: absolute;
     display: block;
-    height: 3px;
+    height: 2px;
     background: #419eda;
     width: 60%;
     top: 50%;

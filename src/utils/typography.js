@@ -1,5 +1,5 @@
 import "../global.css"
-
+import gray from "gray-percentage"
 import Typography from "typography"
 import moragaTheme from "typography-theme-moraga"
 
@@ -21,6 +21,18 @@ moragaTheme.overrideThemeStyles = () => ({
   },
   p: {
     color: "var(--textNormal)",
+  },
+  li: {
+    color: "var(--textEtc)",
+  },
+  blockquote: {
+    color: "white",
+  },
+  hr: {
+    background: "var(--textEtc)",
+  },
+  table: {
+    color: "var(--textEtc)",
   },
 })
 moragaTheme.headerWeight = "600"

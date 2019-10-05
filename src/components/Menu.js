@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import ThemeToggle from "../components/ThemeToggle"
+import Hamburger from "../components/Hamburger"
 
 // Optional background color: #11111;
 const MenuWrapper = styled.div`
@@ -58,7 +59,7 @@ const NavList = styled.nav`
 `
 
 const Spacer = styled.div`
-  flex: 1;
+  flex: 0.75;
 `
 const StyledLink = styled(props => <Link {...props} />)`
   padding: 0.5rem 0;
@@ -97,8 +98,8 @@ const StyledLink = styled(props => <Link {...props} />)`
   }
 `
 
-const Menu = ({ siteTitle, menuLinks, drawerOpen }) => {
-  let [open, setOpen] = useState(true)
+const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
+  let [fadeIn, setFadeIn] = useState(true)
   // Reference:
   // https://lxieyang.github.io/blogs/tech-2018-08-18-reactstrap-gatsby-auto-hiding-navbar-trick/
   //  adapted for functional components:
@@ -115,12 +116,12 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen }) => {
         (prevScrollpos <= 0 && currentScrollPos <= 0)
       ) {
         // Control sensitivity of opening navbar again
-        if (!open && Math.abs(currentScrollPos - prevScrollpos) > 7) {
-          setOpen(true)
+        if (!fadeIn && Math.abs(currentScrollPos - prevScrollpos) > 7) {
+          setFadeIn(true)
         }
       } else {
-        if (open) {
-          setOpen(false)
+        if (fadeIn) {
+          setFadeIn(false)
         }
       }
       prevScrollpos = currentScrollPos
@@ -128,7 +129,7 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen }) => {
   }
 
   return (
-    <MenuWrapper className={open && !drawerOpen ? "open" : "closed"}>
+    <MenuWrapper className={fadeIn && !drawerOpen ? "open" : "closed"}>
       <MenuContainer>
         <LogoHeader>
           <Link
@@ -143,6 +144,7 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen }) => {
         <Spacer />
         <ThemeToggle />
         <div>
+          <Hamburger click={toggleOpen} isOpen={open} />
           <nav>
             <NavList>
               {menuLinks.map(link => (

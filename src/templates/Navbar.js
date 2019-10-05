@@ -28,7 +28,13 @@ const NavBar = () => {
 
   return (
     <div style={{ height: "100%" }}>
-      <Menu drawerOpen={open} siteTitle={siteTitle} menuLinks={menuLinks} />
+      <Menu
+        drawerOpen={open}
+        siteTitle={siteTitle}
+        menuLinks={menuLinks}
+        click={toggleOpen}
+        isOpen={open}
+      />
       <Hamburger click={toggleOpen} isOpen={open} />
       <SideDrawer
         drawerClickHandler={toggleOpen}

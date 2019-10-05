@@ -4,24 +4,34 @@ html {
 
 :root {
   --bg: white;
-  --headerNormal: black;
-  --textNormal: #419eda;
+  --headerNormal: hsla(0, 0%, 0%, 0.85);
+  --textNormal: hsla(0, 0%, 0%, 0.9);
+  --textEtc: hsla(0, 0%, 0%, 0.7);
   --textLink: #419eda;
 }
 
 body {
   height: 100%;
-  margin-top: 2em;
-}
-
-body.light {
-  background: white;
+  background: var(--bg);
 }
 
 body.dark {
-  --headerNormal: white;
   --bg: black;
+  --headerNormal: #d4e9f7;
   --textNormal: #419eda;
+  --textEtc: #7fbde6;
   --textLink: #419eda;
-  background: black;
+  background: var(--bg);
+}
+
+.dark-mode-toggle .react-toggle-track-x,
+.dark-mode-toggle .react-toggle-track-check {
+  width: 16px;
+  height: 16px;
+}
+
+.dark-mode-toggle.react-toggle .react-toggle-track,
+.dark-mode-toggle.react-toggle:hover:not(.react-toggle--disabled)
+  .react-toggle-track {
+  background-color: #33adff;
 }

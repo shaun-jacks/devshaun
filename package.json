@@ -39,6 +39,8 @@
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
     "react-hot-loader": "^4.12.14",
+    "react-icons": "^3.7.0",
+    "react-toggle": "^4.1.1",
     "react-typography": "^0.16.19",
     "styled-components": "^4.4.0",
     "typography": "^0.16.19",
