@@ -42,6 +42,13 @@ module.exports = {
         path: `${__dirname}/content/blog/`,
       },
     },
+    // Had to include this too so images will render properly
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [`gatsby-remark-images`],
+      },
+    },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -52,6 +59,12 @@ module.exports = {
             options: {
               classPrefix: `language-javascript`,
               inlineCodeMarker: null,
+            },
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
             },
           },
         ],
