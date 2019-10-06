@@ -19,20 +19,38 @@ moragaTheme.overrideThemeStyles = () => ({
   h5: {
     color: "var(--headerNormal)",
   },
+  strong: {
+    color: "var(--textEmphasis)",
+  },
+  em: {
+    color: "var(--textEmphasis)",
+  },
+  del: {
+    color: "var(--textEmphasis)",
+  },
   p: {
     color: "var(--textNormal)",
   },
+  small: {
+    color: "var(--textNormal)",
+  },
+  span: {
+    color: "var(--textNormal)",
+  },
   li: {
-    color: "var(--textEtc)",
+    color: "var(--textEmphasis)",
   },
   blockquote: {
-    color: "white",
+    color: "var(--headerNormal)",
+    borderLeft: "0.39rem solid var(--quoteBlock)",
+    borderLeftWidth: " 0.39rem",
+    borderLeftStyle: "solid",
   },
   hr: {
-    background: "var(--textEtc)",
+    background: "var(--textEmphasis)",
   },
   table: {
-    color: "var(--textEtc)",
+    color: "var(--textEmphasis)",
   },
 })
 moragaTheme.headerWeight = "600"

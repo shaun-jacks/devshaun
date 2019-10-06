@@ -42,13 +42,6 @@ module.exports = {
         path: `${__dirname}/content/blog/`,
       },
     },
-    // Had to include this too so images will render properly
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [`gatsby-remark-images`],
-      },
-    },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -64,10 +57,13 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 800,
+              maxWidth: 700,
             },
           },
         ],
+        // Had to include this too so images will render properly
+        // https://github.com/gatsbyjs/gatsby/issues/15486
+        plugins: [`gatsby-remark-images`],
       },
     },
   ],

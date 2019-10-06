@@ -36,6 +36,9 @@ const CardContent = styled.div`
      {
       max-height: 122px;
     }
+    .info p {
+      overflow: ellipsis;
+    }
   }
 `
 const StyledLink = styled(props => <Link {...props} />)`
@@ -68,7 +71,7 @@ const Card = ({ post }) => {
             <h3 style={{ marginBottom: rhythm(0.25) }}>{title}</h3>
             <p style={{ marginBottom: rhythm(0.25) }}>{excerpt}</p>
             <h6>
-              <span>{author}</span> - <span>{date}</span>
+              <small>{date}</small>
             </h6>
           </div>
         </CardContent>

@@ -1,4 +1,6 @@
 const { createFilePath } = require("gatsby-source-filesystem")
+const _ = require("lodash")
+const path = require("path")
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
@@ -21,20 +23,31 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 }
 
-const path = require("path")
 exports.createPages = async ({ graphql, actions, reporter }) => {
   // Destructure the createPage function from the actions object
   const { createPage } = actions
+  const tagTemplate = path.resolve("src/templates/tags.js")
   const result = await graphql(`
     query {
-      allMdx {
+      postsMdx: allMdx(
+        sort: { order: DESC, fields: [frontmatter___date] }
+        limit: 2000
+      ) {
         edges {
           node {
             id
             fields {
               slug
             }
+            frontmatter {
+              tags
+            }
           }
+        }
+      }
+      tagsGroup: allMdx(limit: 2000) {
+        group(field: frontmatter___tags) {
+          fieldValue
         }
       }
     }
@@ -45,7 +58,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   // Create blog post pages.
-  const posts = result.data.allMdx.edges
+  const posts = result.data.postsMdx.edges
   // We'll call `createPage` for each result
   posts.forEach(({ node }, index) => {
     createPage({
@@ -57,6 +70,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // We can use the values in this context in
       // our page layout component
       context: { id: node.id },
+    })
+  })
+  // Extract tag data from query
+  const tags = result.data.tagsGroup.group
+  // Make tag pages
+  tags.forEach(tag => {
+    createPage({
+      path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+      component: tagTemplate,
+      context: {
+        tag: tag.fieldValue,
+      },
     })
   })
 }

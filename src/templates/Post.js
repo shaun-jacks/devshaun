@@ -4,20 +4,19 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import Layout from "./Layout"
 import Img from "gatsby-image"
 import styled from "styled-components"
-import { scale, rhythm } from "../utils/typography"
+import TagList from "../components/TagList"
 
-const PostWrapper = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  max-width: ${rhythm(24)};
-  padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
-`
+const PostWrapper = styled.div``
 
 export default function PageTemplate({ data: { mdx } }) {
   return (
     <Layout>
       <PostWrapper>
-        <h1 style={{ marginTop: ".5em" }}>{mdx.frontmatter.title}</h1>
+        <h1>{mdx.frontmatter.title}</h1>
+        <p>
+          {mdx.frontmatter.author} - {mdx.frontmatter.date}
+        </p>
+        <TagList tags={mdx.frontmatter.tags} />
         <Img
           fluid={mdx.frontmatter.featuredImage.childImageSharp.fluid}
           style={{ marginBottom: "2em" }}
@@ -43,6 +42,7 @@ export const pageQuery = graphql`
             }
           }
         }
+        tags
       }
     }
   }

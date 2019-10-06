@@ -20,6 +20,10 @@ const menuLinks = [
     name: "Contact",
     link: "/contact",
   },
+  {
+    name: "Tags",
+    link: "/tags",
+  },
 ]
 
 const NavBar = () => {
