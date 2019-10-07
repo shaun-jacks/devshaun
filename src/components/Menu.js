@@ -4,7 +4,6 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import ThemeToggle from "../components/ThemeToggle"
-import Hamburger from "../components/Hamburger"
 
 // Optional background color: #11111;
 const MenuWrapper = styled.div`
@@ -36,7 +35,7 @@ const MenuContainer = styled.div`
 `
 
 const LogoHeader = styled.h1`
-  color: #12334f;
+  color: var(--textNormal);
   margin-bottom: 0;
   text-decoration: none;
   letter-spacing: 5px;
@@ -65,6 +64,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   padding: 0.5rem 0;
   position: relative;
   letter-spacing: 2px;
+  color: var(--textNormal);
 
   &:hover {
     text-decoration: none;
@@ -138,6 +138,7 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
               to="/"
               style={{
                 textDecoration: "none",
+                color: "var(--textNormal)",
               }}
             >
               {siteTitle}

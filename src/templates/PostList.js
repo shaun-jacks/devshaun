@@ -3,12 +3,7 @@ import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import Card from "../components/Card"
 
-const PostWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-`
+const PostWrapper = styled.div``
 
 export default props => (
   <StaticQuery

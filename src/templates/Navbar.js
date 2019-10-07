@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { Helmet } from "react-helmet"
 import Menu from "../components/Menu"
 import SideDrawer from "../components/SideDrawer"
 import Backdrop from "../components/Backdrop"

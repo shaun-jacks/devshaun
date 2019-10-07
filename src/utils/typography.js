@@ -1,5 +1,4 @@
 import "../global.css"
-import gray from "gray-percentage"
 import Typography from "typography"
 import moragaTheme from "typography-theme-moraga"
 
@@ -30,6 +29,9 @@ moragaTheme.overrideThemeStyles = () => ({
   },
   p: {
     color: "var(--textNormal)",
+  },
+  a: {
+    color: "var(--textLink)",
   },
   small: {
     color: "var(--textNormal)",

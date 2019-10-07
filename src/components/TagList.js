@@ -1,5 +1,4 @@
 import React from "react"
-import { scale, rhythm } from "../utils/typography"
 import kebabCase from "lodash/kebabCase"
 import { Link } from "gatsby"
 

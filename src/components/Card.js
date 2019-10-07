@@ -8,7 +8,7 @@ const CardWrapper = styled.article`
   width: 80vw;
   max-width: 800px;
   max-height: 250px;
-  margin: 1em;
+  margin: 2em;
 `
 
 const CardContent = styled.div`
