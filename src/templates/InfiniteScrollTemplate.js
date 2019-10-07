@@ -49,8 +49,6 @@ const InfiniteScroll = ({ edges }) => {
       {currentList.map(({ node }) => {
         return <Card key={node.id} post={node}></Card>
       })}
-      {!hasMore && <div>All Posts Loaded!</div>}
-      {hasMore && <div>Scroll Down to Load More...</div>}
     </div>
   )
 }

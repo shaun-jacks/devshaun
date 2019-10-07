@@ -8,6 +8,7 @@ const CardWrapper = styled.article`
   max-width: 800px;
   max-height: 250px;
   margin: 2em;
+  overflow: ellipsis;
 `
 
 const CardContent = styled.div`
@@ -52,7 +53,7 @@ const StyledLink = styled(props => <Link {...props} />)`
 // width: "300px", height: "200px", margin: "1em"
 
 const Card = ({ post }) => {
-  let { date, title, author } = post.frontmatter
+  let { date, title, author, tags } = post.frontmatter
   let { excerpt, timeToRead } = post
 
   let featuredImgFluid = post.frontmatter.featuredImage.childImageSharp.fluid
@@ -72,11 +73,10 @@ const Card = ({ post }) => {
             <p style={{ marginBottom: rhythm(0.1), overflow: "ellipsis" }}>
               {excerpt}
             </p>
-            <h6>
-              <small>
-                {timeToRead} min - {author} - {date}
-              </small>
-            </h6>
+
+            <small>
+              <strong>{timeToRead} min</strong> - {date}
+            </small>
           </div>
         </CardContent>
       </StyledLink>

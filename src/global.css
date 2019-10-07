@@ -6,6 +6,7 @@ html {
   --bg: white;
   --headerNormal: hsla(0, 0%, 0%, 0.85);
   --textNormal: hsla(0, 0%, 0%, 0.9);
+  --textSmall: hsla(0, 0%, 0%, 0.65);
   --textEtc: hsla(0, 0%, 0%, 0.7);
   --textLink: #419eda;
   --quoteBlock: #00000021;
@@ -19,6 +20,7 @@ body.dark {
   --bg: black;
   --headerNormal: #d4e9f7;
   --textNormal: #419eda;
+  --textSmall: #41da9d;
   --textEmphasis: #6cc4ff;
   --quoteBlock: #419edaa6;
   --textEtc: #7fbde6;
