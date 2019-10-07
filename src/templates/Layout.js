@@ -6,7 +6,7 @@ import styled from "styled-components"
 import { rhythm } from "../utils/typography"
 
 const LayoutWrapper = styled.div`
-  margin-top: 5em;
+  margin-top: 2.5em;
   margin-left: auto;
   margin-right: auto;
   max-width: ${rhythm(24)};

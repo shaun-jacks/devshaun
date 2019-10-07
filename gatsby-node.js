@@ -31,7 +31,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     query {
       postsMdx: allMdx(
         sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 2000
+        limit: 1000
       ) {
         edges {
           node {
@@ -59,6 +59,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Create blog post pages.
   const posts = result.data.postsMdx.edges
+
   // We'll call `createPage` for each result
   posts.forEach(({ node }, index) => {
     createPage({

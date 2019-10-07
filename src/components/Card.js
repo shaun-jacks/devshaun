@@ -52,9 +52,9 @@ const StyledLink = styled(props => <Link {...props} />)`
 // width: "300px", height: "200px", margin: "1em"
 
 const Card = ({ post }) => {
-  console.log(post)
   let { date, title, author } = post.frontmatter
   let { excerpt, timeToRead } = post
+
   let featuredImgFluid = post.frontmatter.featuredImage.childImageSharp.fluid
   let { slug } = post.fields
 

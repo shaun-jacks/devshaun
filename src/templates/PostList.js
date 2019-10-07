@@ -1,7 +1,7 @@
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
-import Card from "../components/Card"
+import InfiniteScrollTemplate from "./InfiniteScrollTemplate"
 
 const PostWrapper = styled.div``
 
@@ -38,9 +38,7 @@ export default props => (
     `}
     render={data => (
       <PostWrapper>
-        {data.allMdx.edges.map(({ node }) => (
-          <Card key={node.id} post={node}></Card>
-        ))}
+        <InfiniteScrollTemplate edges={data.allMdx.edges} />
       </PostWrapper>
     )}
   />
