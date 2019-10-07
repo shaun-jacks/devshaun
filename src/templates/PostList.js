@@ -29,6 +29,7 @@ export default props => (
               fields {
                 slug
               }
+              timeToRead
               excerpt(pruneLength: 60)
             }
           }

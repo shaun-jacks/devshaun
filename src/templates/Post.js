@@ -14,7 +14,8 @@ export default function PageTemplate({ data: { mdx } }) {
       <PostWrapper>
         <h1>{mdx.frontmatter.title}</h1>
         <p>
-          {mdx.frontmatter.author} - {mdx.frontmatter.date}
+          {mdx.frontmatter.author} - {mdx.timeToRead} min -{" "}
+          {mdx.frontmatter.date}
         </p>
         <TagList tags={mdx.frontmatter.tags} />
         <Img
@@ -31,6 +32,7 @@ export const pageQuery = graphql`
     mdx(id: { eq: $id }) {
       id
       body
+      timeToRead
       frontmatter {
         title
         date(formatString: "DD MMMM, YYYY")

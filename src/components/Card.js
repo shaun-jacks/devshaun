@@ -54,7 +54,7 @@ const StyledLink = styled(props => <Link {...props} />)`
 const Card = ({ post }) => {
   console.log(post)
   let { date, title, author } = post.frontmatter
-  let { excerpt } = post
+  let { excerpt, timeToRead } = post
   let featuredImgFluid = post.frontmatter.featuredImage.childImageSharp.fluid
   let { slug } = post.fields
 
@@ -73,7 +73,9 @@ const Card = ({ post }) => {
               {excerpt}
             </p>
             <h6>
-              <small>{date}</small>
+              <small>
+                {timeToRead} min - {author} - {date}
+              </small>
             </h6>
           </div>
         </CardContent>
