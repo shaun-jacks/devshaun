@@ -5,7 +5,6 @@ import Image from "gatsby-image"
 import { rhythm } from "../utils/typography"
 
 const CardWrapper = styled.article`
-  width: 80vw;
   max-width: 800px;
   max-height: 250px;
   margin: 2em;
@@ -30,6 +29,7 @@ const CardContent = styled.div`
   }
   .info {
     flex: 2;
+    max-height: 100%;
   }
 
   @media (max-width: 506px) {
@@ -68,8 +68,10 @@ const Card = ({ post }) => {
             </Link>
           </div>
           <div className="info">
-            <h3 style={{ marginBottom: rhythm(0.25) }}>{title}</h3>
-            <p style={{ marginBottom: rhythm(0.25) }}>{excerpt}</p>
+            <h3 style={{ marginBottom: rhythm(0.1) }}>{title}</h3>
+            <p style={{ marginBottom: rhythm(0.1), overflow: "ellipsis" }}>
+              {excerpt}
+            </p>
             <h6>
               <small>{date}</small>
             </h6>

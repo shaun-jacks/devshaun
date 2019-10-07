@@ -9,7 +9,7 @@ export default props => (
   <StaticQuery
     query={graphql`
       query {
-        allMdx {
+        allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
           totalCount
           edges {
             node {
@@ -29,7 +29,7 @@ export default props => (
               fields {
                 slug
               }
-              excerpt(pruneLength: 80)
+              excerpt(pruneLength: 60)
             }
           }
         }

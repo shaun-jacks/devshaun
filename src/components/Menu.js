@@ -35,7 +35,7 @@ const MenuContainer = styled.div`
 `
 
 const LogoHeader = styled.h1`
-  color: var(--textNormal);
+  color: #419eda;
   margin-bottom: 0;
   text-decoration: none;
   letter-spacing: 5px;
@@ -64,7 +64,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   padding: 0.5rem 0;
   position: relative;
   letter-spacing: 2px;
-  color: var(--textNormal);
+  color: #419eda;
 
   &:hover {
     text-decoration: none;
@@ -138,7 +138,7 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
               to="/"
               style={{
                 textDecoration: "none",
-                color: "var(--textNormal)",
+                color: "#419eda",
               }}
             >
               {siteTitle}
