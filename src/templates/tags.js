@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Layout from "./Layout"
+import Card from "../components/Card"
 
 // Components
 import { Link, graphql } from "gatsby"
@@ -19,11 +20,7 @@ const Tags = ({ pageContext, data }) => {
         {edges.map(({ node }) => {
           const { slug } = node.fields
           const { title } = node.frontmatter
-          return (
-            <li key={slug}>
-              <Link to={slug}>{title}</Link>
-            </li>
-          )
+          return <Card key={node.id} post={node}></Card>
         })}
       </ul>
       {/*
@@ -73,8 +70,18 @@ export const pageQuery = graphql`
           fields {
             slug
           }
+          excerpt(pruneLength: 60)
           frontmatter {
             title
+            date
+            author
+            featuredImage {
+              childImageSharp {
+                fluid(maxWidth: 140) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
