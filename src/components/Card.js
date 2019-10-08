@@ -7,7 +7,7 @@ import { rhythm } from "../utils/typography"
 const CardWrapper = styled.article`
   max-width: 800px;
   max-height: 250px;
-  margin: 2em;
+  margin: 2em 0em;
   overflow: ellipsis;
 `
 
@@ -70,12 +70,12 @@ const Card = ({ post }) => {
           </div>
           <div className="info">
             <h3 style={{ marginBottom: rhythm(0.1) }}>{title}</h3>
-            <p style={{ marginBottom: rhythm(0.1), overflow: "ellipsis" }}>
+            <small style={{ marginBottom: rhythm(0.1), overflow: "ellipsis" }}>
               {excerpt}
-            </p>
-
+            </small>
+            <br />
             <small>
-              <strong>{timeToRead} min</strong> - {date}
+              <strong>{timeToRead} min read</strong> - {date}
             </small>
           </div>
         </CardContent>

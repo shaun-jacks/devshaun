@@ -132,6 +132,7 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
   return (
     <MenuWrapper className={fadeIn && !drawerOpen ? "open" : "closed"}>
       <MenuContainer>
+        <Spacer />
         <div style={{ flex: "1" }}>
           <LogoHeader>
             <Link

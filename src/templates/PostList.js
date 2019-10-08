@@ -16,7 +16,7 @@ export default props => (
               id
               frontmatter {
                 title
-                date(formatString: "DD MMMM, YYYY")
+                date(formatString: "MMMM DD, YYYY")
                 author
                 featuredImage {
                   childImageSharp {

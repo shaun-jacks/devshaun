@@ -20,11 +20,11 @@ body.dark {
   --bg: black;
   --headerNormal: #d4e9f7;
   --textNormal: #419eda;
-  --textSmall: #41da9d;
+  --textSmall: #419eda;
   --textEmphasis: #6cc4ff;
   --quoteBlock: #419edaa6;
   --textEtc: #7fbde6;
-  --textLink: #41da9d;
+  --textLink: #419eda;
   background: var(--bg);
 }
 
