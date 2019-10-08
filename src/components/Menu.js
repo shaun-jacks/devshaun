@@ -14,7 +14,7 @@ const MenuWrapper = styled.div`
   width: 100%;
   z-index: 9998;
   transition: all 0.5s;
-  background: var(--bg);
+  background: var(--bgAccent);
 
   &.open {
     opacity: 1;
@@ -50,11 +50,11 @@ const NavList = styled.nav`
   flex: 1;
   margin: 0 auto;
 
-  @media (max-width: 768px) {
+  /*@media (max-width: 768px) {
      {
       display: none;
     }
-  }
+  }*/
 `
 
 const Spacer = styled.div`
@@ -69,7 +69,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   &:hover {
     text-decoration: none;
   }
-
+  /*
   &::before,
   &::after {
     content: "";
@@ -95,7 +95,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   &:hover::before,
   &:hover::after {
     transform: scaleX(1);
-  }
+  } */
 `
 
 const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
@@ -132,7 +132,6 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
   return (
     <MenuWrapper className={fadeIn && !drawerOpen ? "open" : "closed"}>
       <MenuContainer>
-        <Spacer />
         <div style={{ flex: "1" }}>
           <LogoHeader>
             <Link
@@ -165,7 +164,6 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
             ))}
           </NavList>
         </nav>
-        <Spacer />
       </MenuContainer>
     </MenuWrapper>
   )

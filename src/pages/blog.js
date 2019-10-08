@@ -3,5 +3,9 @@ import Layout from "../templates/Layout"
 import PostList from "../templates/PostList"
 
 export default () => {
-  return <Layout></Layout>
+  return (
+    <Layout>
+      <PostList />
+    </Layout>
+  )
 }

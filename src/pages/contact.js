@@ -90,7 +90,6 @@ export default class contactPage extends React.Component {
             </FormItem>
             <FormItem>
               <label>Email</label>
-
               <input
                 type="email"
                 name="email"

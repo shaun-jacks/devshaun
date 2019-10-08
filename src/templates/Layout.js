@@ -15,7 +15,7 @@ const LayoutWrapper = styled.div`
 
 const Layout = ({ children }) => {
   return (
-    <div style={{ height: "100%", backgroundColor: "var(--background)" }}>
+    <div style={{ height: "100%", backgroundColor: "var(--bg)" }}>
       <Header />
       <LayoutWrapper>{children}</LayoutWrapper>
       <Footer />

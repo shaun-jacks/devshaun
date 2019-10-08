@@ -3,7 +3,8 @@ html {
 }
 
 :root {
-  --bg: white;
+  --bg: #fefefe;
+  --bgAccent: white;
   --headerNormal: hsla(0, 0%, 0%, 0.85);
   --textNormal: hsla(0, 0%, 0%, 0.9);
   --textSmall: hsla(0, 0%, 0%, 0.65);
@@ -15,15 +16,15 @@ html {
 body {
   height: 100%;
 }
-
 body.dark {
-  --bg: black;
-  --headerNormal: #d4e9f7;
-  --textNormal: #419eda;
-  --textSmall: #419eda;
-  --textEmphasis: #6cc4ff;
-  --quoteBlock: #419edaa6;
-  --textEtc: #7fbde6;
+  --bg: #202020;
+  --bgAccent: #181818;
+  --headerNormal: #d7dfed;
+  --textNormal: #b3b9c5;
+  --textSmall: #b3b9c5;
+  --textEmphasis: #d7dfed;
+  --quoteBlock: #b3b9c5a6;
+  --textEtc: #b3b9c5;
   --textLink: #419eda;
   background: var(--bg);
 }
@@ -37,5 +38,14 @@ body.dark {
 .dark-mode-toggle.react-toggle .react-toggle-track,
 .dark-mode-toggle.react-toggle:hover:not(.react-toggle--disabled)
   .react-toggle-track {
-  background-color: #33adff;
+  background-color: #d7dfed;
+}
+
+.gatsby-highlight {
+  background: black;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background-color: black;
 }

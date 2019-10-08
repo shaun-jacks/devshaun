@@ -10,7 +10,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   &:hover {
     text-decoration: none;
   }
-
+  /*
   &::before,
   &::after {
     content: "";
@@ -36,7 +36,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   &:hover::before,
   &:hover::after {
     transform: scaleX(1);
-  }
+  }*/
 `
 
 const DrawerWrapper = styled.nav`

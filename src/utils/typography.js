@@ -18,6 +18,9 @@ moragaTheme.overrideThemeStyles = () => ({
   h5: {
     color: "var(--headerNormal)",
   },
+  h6: {
+    color: "var(--headerNormal)",
+  },
   strong: {
     color: "var(--textEmphasis)",
   },

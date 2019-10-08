@@ -12,16 +12,16 @@ const menuLinks = [
   },
 
   {
-    name: "About Me",
-    link: "/about",
+    name: "Me",
+    link: "/me",
   },
   {
     name: "Contact",
     link: "/contact",
   },
   {
-    name: "Tags",
-    link: "/tags",
+    name: "Articles",
+    link: "/blog",
   },
 ]
 
@@ -38,6 +38,7 @@ const NavBar = () => {
         click={toggleOpen}
         isOpen={open}
       />
+      {/*
       <Hamburger click={toggleOpen} isOpen={open} />
       <SideDrawer
         drawerClickHandler={toggleOpen}
@@ -48,7 +49,7 @@ const NavBar = () => {
         <div>
           <Backdrop toggleDrawer={toggleOpen} />
         </div>
-      )}
+      )}*/}
     </div>
   )
 }
