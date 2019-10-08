@@ -71,7 +71,12 @@ export default class contactPage extends React.Component {
     return (
       <Layout>
         <FormWrapper>
-          <form method="post" netlify-honeypot="bot-field" data-netlify="true">
+          <form
+            name="contact"
+            method="post"
+            netlify-honeypot="bot-field"
+            data-netlify="true"
+          >
             <input type="hidden" name="bot-field" />
             <FormItem>
               <label>Name</label>
