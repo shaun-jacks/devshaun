@@ -27,8 +27,6 @@ const FormItem = styled.div`
     width: 80%;
     border: none;
     border-bottom: 1px solid var(--textNormal);
-    -webkit-transition: all 0.4s ease-out;
-    transition: all 0.4s ease-out;
   }
   textarea {
     width: 100%;
@@ -73,7 +71,8 @@ export default class contactPage extends React.Component {
     return (
       <Layout>
         <FormWrapper>
-          <form onSubmit={this.handleSubmit}>
+          <form method="post" netlify-honeypot="bot-field" data-netlify="true">
+            <input type="hidden" name="bot-field" />
             <FormItem>
               <label>Name</label>
               <input
