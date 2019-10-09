@@ -35,7 +35,7 @@ const MenuContainer = styled.div`
 `
 
 const LogoHeader = styled.h1`
-  color: #419eda;
+  color: white;
   margin-bottom: 0;
   text-decoration: none;
   letter-spacing: 5px;
@@ -50,11 +50,11 @@ const NavList = styled.nav`
   flex: 1;
   margin: 0 auto;
 
-  /*@media (max-width: 768px) {
+  @media (max-width: 768px) {
      {
       display: none;
     }
-  }*/
+  }
 `
 
 const Spacer = styled.div`
@@ -164,6 +164,7 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
             ))}
           </NavList>
         </nav>
+        <Spacer />
       </MenuContainer>
     </MenuWrapper>
   )
