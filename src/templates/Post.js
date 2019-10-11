@@ -23,7 +23,7 @@ class PageTemplate extends Component {
 
     try {
       const response = await axios.get(
-        `https://immense-shelf-15583.herokuapp.com/api/comment/first-mdx-blog-post`
+        `https://immense-shelf-15583.herokuapp.com/api/comment${slug}`
       )
       const comments = response.data
       console.log(comments)

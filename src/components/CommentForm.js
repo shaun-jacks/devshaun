@@ -18,9 +18,15 @@ const FormTextArea = styled.textarea`
 
 const FormButton = styled.button`
   border: 1px solid var(--textNormal);
-  background-color: var(--bg);
+  background-color: var(--button);
   color: var(--textNormal);
   border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--buttonActive);
+    color: var(--buttonTextActive);
+  }
 `
 
 class CommentForm extends Component {
@@ -50,6 +56,7 @@ class CommentForm extends Component {
     const { commentBody, slug } = this.state
     const token = window.localStorage.getItem("token")
     const serverEndpoint = "https://immense-shelf-15583.herokuapp.com"
+    //https://immense-shelf-15583.herokuapp.com
     const url = `${serverEndpoint}/api/comment${slug}`
 
     const res = await axios.post(
@@ -63,7 +70,6 @@ class CommentForm extends Component {
         },
       }
     )
-    console.log(res)
     window.location = slug
   }
 

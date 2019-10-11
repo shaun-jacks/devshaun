@@ -57,6 +57,9 @@ moragaTheme.overrideThemeStyles = () => ({
   table: {
     color: "var(--textEmphasis)",
   },
+  hr: {
+    background: "var(--textNormal)",
+  },
 })
 moragaTheme.headerWeight = "600"
 moragaTheme.bodyWeight = "400"
