@@ -27,7 +27,7 @@ export const getUser = () => {
   user = JSON.parse(user)
   console.log(user)
   if (!_.isEmpty(user)) {
-    return JSON.parse(user)
+    return user
   }
   return {}
 }

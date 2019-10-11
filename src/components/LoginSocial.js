@@ -40,7 +40,7 @@ class LoginSocial extends Component {
     this.setState({ loggedIn })
   }
 
-  responseFacebook = async response => {
+  handleFacebookLogin = async response => {
     const serverEndpoint = "https://immense-shelf-15583.herokuapp.com"
     console.log(response)
     handleLogin(
@@ -77,7 +77,7 @@ class LoginSocial extends Component {
                 </IconContext.Provider>
               }
               textButton="Login with Facebook"
-              callback={this.responseFacebook}
+              callback={this.handleFacebookLogin}
               disableMobileRedirect={true}
               cssClass="social-login-button"
             />
