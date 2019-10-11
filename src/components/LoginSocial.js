@@ -6,7 +6,7 @@ import googleIcon from "../images/google-icon-black.png"
 import styled from "styled-components"
 import axios from "axios"
 import FacebookLogin from "react-facebook-login"
-import GoogleLogin from "react-google-login"
+import { serverEndpoint } from "../config/config"
 
 const LoginButton = styled.div`
   border: 1px solid var(--textNormal);
@@ -28,31 +28,45 @@ const LoginButton = styled.div`
 const Spacer = styled.div`
   flex: 1;
 `
-const handleFacebookLogin = async () => {
-  try {
-    const res = await axios.get("http://localhost:3000/api/auth/facebook")
-    console.log(res.data)
-    // window.location = "http://localhost:3000/api/auth/facebook"
-  } catch (err) {
-    console.log(err)
-  }
-}
 
+{
+  /* <LoginButton>
+              <Spacer />
+              <img
+                style={{ width: "1.5em" }}
+                src={facebookIcon}
+                alt="Facebook Icon"
+              />
+              <p>Login with Facebook</p>
+              <Spacer />
+            </LoginButton> */
+}
 class LoginSocial extends Component {
+  async responseFacebook(response) {
+    const res = await axios.post(
+      `https://immense-shelf-15583.herokuapp.com/api/auth/facebook`,
+      {
+        access_token: response.accessToken,
+      }
+    )
+    console.log(res)
+    // if (!this.props.errorMessage) {
+    //   this.props.history.push('/dashboard');
+    // }
+  }
+
   render() {
     return (
       <div>
-        <LoginButton onClick={handleFacebookLogin}>
-          <Spacer />
-          <img
-            style={{ width: "1.5em" }}
-            src={facebookIcon}
-            alt="Facebook Icon"
-          />
-          <p>Login with Facebook</p>
-          <Spacer />
-        </LoginButton>
-
+        <FacebookLogin
+          appId="2472291656430769"
+          fields="name,email,picture"
+          render={renderProps => (
+            <button style={{ marginRight: 15 }}>Facebook</button>
+          )}
+          callback={this.responseFacebook}
+          disableMobileRedirect={true}
+        />
         <LoginButton>
           <Spacer />
           <img style={{ width: "1.5em" }} src={googleIcon} alt="Google Icon" />

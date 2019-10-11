@@ -7,6 +7,7 @@ import styled from "styled-components"
 import TagList from "../components/TagList"
 import axios from "axios"
 import Comments from "./Comments"
+import { serverEndpoint } from "../config/config"
 
 const PostWrapper = styled.div``
 
@@ -18,10 +19,11 @@ class PageTemplate extends Component {
 
   async componentDidMount() {
     const { slug } = this.props.pageContext
+    console.log(`${serverEndpoint}/api/comment${slug}`)
 
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/comment${slug}`
+        `https://immense-shelf-15583.herokuapp.com/api/comment/first-mdx-blog-post`
       )
       const comments = response.data
       console.log(comments)
