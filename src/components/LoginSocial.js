@@ -30,9 +30,9 @@ const Spacer = styled.div`
 `
 const handleFacebookLogin = async () => {
   try {
-    // const res = await axios.get("/api/auth/facebook")
-    // console.log(res.data)
-    window.location = "http://localhost:3000/api/auth/facebook"
+    const res = await axios.get("/api/auth/facebook")
+    console.log(res.data)
+    // window.location = "http://localhost:3000/api/auth/facebook"
   } catch (err) {
     console.log(err)
   }
