@@ -57,3 +57,34 @@ body.dark {
 pre[class*="language-"] {
   background-color: black;
 }
+
+.social-login-button {
+  border: 1px solid var(--textNormal);
+  background-color: var(--button);
+  color: var(--textNormal);
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0em;
+  cursor: pointer;
+  padding: 0.1em 1em;
+}
+
+.social-login-button:hover {
+  background-color: var(--buttonActive);
+  color: var(--buttonTextActive);
+}
+
+.social-login-icon {
+  color: var(--textNormal);
+}
+
+.social-login-button:hover .social-login-icon {
+  color: var(--buttonTextActive);
+}
+
+.social-login-button img,
+.social-login-button p,
+.social-login-button textarea {
+  margin: 0.1em 1em 0.1em 0;
+}
