@@ -1,38 +1,72 @@
-import React from "react"
+import React, { Component } from "react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import Layout from "./Layout"
 import Img from "gatsby-image"
 import styled from "styled-components"
 import TagList from "../components/TagList"
+import axios from "axios"
+import Comments from "./Comments"
 
 const PostWrapper = styled.div``
 
-export default function PageTemplate({ data: { mdx } }) {
-  return (
-    <Layout>
-      <PostWrapper>
-        <h1>{mdx.frontmatter.title}</h1>
-        <p>
-          {mdx.frontmatter.author} - {mdx.timeToRead} min -{" "}
-          {mdx.frontmatter.date}
-        </p>
-        <TagList tags={mdx.frontmatter.tags} />
-        <Img
-          fluid={mdx.frontmatter.featuredImage.childImageSharp.fluid}
-          style={{ marginBottom: "2em" }}
-        />
-        <MDXRenderer>{mdx.body}</MDXRenderer>
-      </PostWrapper>
-    </Layout>
-  )
+class PageTemplate extends Component {
+  state = {
+    comments: [],
+    error: false,
+  }
+
+  async componentDidMount() {
+    const { slug } = this.props.pageContext
+
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/comment${slug}`
+      )
+      const comments = response.data
+      console.log(comments)
+      this.setState({ comments })
+    } catch (error) {
+      console.log(error)
+      this.setState({ error: true })
+    }
+  }
+
+  render() {
+    const { mdx } = this.props.data
+
+    return (
+      <Layout>
+        <PostWrapper>
+          <h1>{mdx.frontmatter.title}</h1>
+          <p>
+            {mdx.frontmatter.author} - {mdx.timeToRead} min -{" "}
+            {mdx.frontmatter.date}
+          </p>
+          <TagList tags={mdx.frontmatter.tags} />
+          <Img
+            fluid={mdx.frontmatter.featuredImage.childImageSharp.fluid}
+            style={{ marginBottom: "2em" }}
+          />
+          <MDXRenderer>{mdx.body}</MDXRenderer>
+          <Comments comments={this.state.comments} slug={mdx.fields.slug} />
+        </PostWrapper>
+      </Layout>
+    )
+  }
 }
+
+export default PageTemplate
+
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
     mdx(id: { eq: $id }) {
       id
       body
       timeToRead
+      fields {
+        slug
+      }
       frontmatter {
         title
         date(formatString: "DD MMMM, YYYY")

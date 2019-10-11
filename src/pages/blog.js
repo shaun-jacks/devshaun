@@ -21,7 +21,7 @@ const CategoryItemWrapper = styled(props => <div {...props} />)`
   }
 `
 
-const CategoryItem = styled.h4`
+const CategoryItem = styled.h6`
   flex: 1;
   color: var(--buttonText);
   margin: 0.25em 0.5em;
@@ -127,11 +127,11 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          excerpt(pruneLength: 60)
+          timeToRead
           fields {
             slug
           }
-          excerpt(pruneLength: 60)
-          timeToRead
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
