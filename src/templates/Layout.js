@@ -13,10 +13,10 @@ const LayoutWrapper = styled.div`
   padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, HeaderTitle }) => {
   return (
     <div style={{ height: "100%", backgroundColor: "var(--bg)" }}>
-      <Header />
+      <Header HeaderTitle={HeaderTitle} />
       <LayoutWrapper>{children}</LayoutWrapper>
       <Footer />
     </div>

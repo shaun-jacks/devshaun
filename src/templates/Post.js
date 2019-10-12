@@ -5,9 +5,7 @@ import Layout from "./Layout"
 import Img from "gatsby-image"
 import styled from "styled-components"
 import TagList from "../components/TagList"
-import axios from "axios"
 import Comments from "./Comments"
-import config from "../config/config"
 
 const PostWrapper = styled.div``
 
@@ -16,7 +14,7 @@ class PageTemplate extends Component {
     const { mdx } = this.props.data
 
     return (
-      <Layout>
+      <Layout HeaderTitle={`${mdx.frontmatter.title} - Dev Shaun`}>
         <PostWrapper>
           <h1>{mdx.frontmatter.title}</h1>
           <p>
@@ -29,7 +27,6 @@ class PageTemplate extends Component {
             style={{ marginBottom: "2em" }}
           />
           <MDXRenderer>{mdx.body}</MDXRenderer>
-          <a name="comments"></a>
           <Comments slug={mdx.fields.slug} />
         </PostWrapper>
       </Layout>

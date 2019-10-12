@@ -2,11 +2,11 @@ import React from "react"
 import Navbar from "./Navbar"
 import { Helmet } from "react-helmet"
 
-const Header = ({ children }) => {
+const Header = ({ children, HeaderTitle }) => {
   return (
     <React.Fragment>
       <Helmet
-        title="Dev Shaun"
+        title={HeaderTitle || "Dev Shaun"}
         meta={[
           {
             name: "description",

@@ -8,13 +8,15 @@ import "../global.css"
 const CategoryItemWrapper = styled(props => <div {...props} />)`
   margin: 0.25em 0.5em;
   padding: 0em 0em;
-  border-radius: 8px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   background-color: var(--button);
 
   &:hover {
     cursor: pointer;
+    background-color: var(--buttonActive);
+    color: var(--buttonTextActive);
   }
   &.active {
     background-color: var(--buttonActive);
@@ -23,15 +25,38 @@ const CategoryItemWrapper = styled(props => <div {...props} />)`
 
 const CategoryItem = styled.h6`
   flex: 1;
-  color: var(--buttonText);
   margin: 0.25em 0.5em;
-  &:hover {
-    cursor: pointer;
-  }
+  color: var(--buttonText);
 
   &.active {
     color: var(--buttonTextActive);
   }
+`
+
+const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+`
+
+const SearchBar = styled.input`
+  margin-top: 0;
+  width: 70%;
+  padding: 0em 1em;
+  background-color: var(--button);
+  border: 1px solid var(--textNormal);
+  color: var(--textNormal);
+
+  &:focus {
+    border: 1px solid var(--textNormal);
+  }
+`
+
+const FilterCount = styled.div`
+  margin-left: 1em;
+  color: var(--buttonText);
+  font-size: 5vw;
 `
 
 export default class BlogPage extends Component {
@@ -39,23 +64,36 @@ export default class BlogPage extends Component {
     currentCategories: [],
     posts: this.props.data.posts.edges,
     filteredPosts: this.props.data.posts.edges,
+    searchTitle: "",
   }
 
   filterPosts = () => {
-    let { posts, filteredPosts, currentCategories } = this.state
+    let { posts, filteredPosts, currentCategories, searchTitle } = this.state
     filteredPosts = posts
+
+    filteredPosts = posts.filter(post =>
+      post.node.frontmatter.title
+        .toLowerCase()
+        .includes(searchTitle.toLowerCase())
+    )
 
     if (currentCategories.length > 0) {
       filteredPosts = filteredPosts.filter(
         post =>
           post.node.frontmatter.categories &&
-          currentCategories.every(cat =>
+          currentCategories.some(cat =>
             post.node.frontmatter.categories.includes(cat)
           )
       )
     }
 
     this.setState({ filteredPosts })
+  }
+
+  handleChange = event => {
+    const { name, value } = event.target
+    this.setState({ [name]: value })
+    this.filterPosts()
   }
 
   updateCategories = category => {
@@ -75,7 +113,7 @@ export default class BlogPage extends Component {
   }
 
   render() {
-    let { filteredPosts, currentCategories } = this.state
+    let { filteredPosts, currentCategories, searchTitle } = this.state
     let filterCount = filteredPosts.length
     let categories = this.props.data.categories.group
 
@@ -109,6 +147,18 @@ export default class BlogPage extends Component {
             )
           })}
         </div>
+        <SearchContainer>
+          <SearchBar
+            className="search"
+            type="text"
+            name="searchTitle"
+            value={searchTitle}
+            placeholder="Type here to filter posts..."
+            onChange={this.handleChange}
+          />
+          <FilterCount>{filterCount}</FilterCount>
+        </SearchContainer>
+        <br />
         <div>
           {filteredPosts.map(({ node }) => {
             return <Card key={node.id} post={node}></Card>

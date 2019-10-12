@@ -43,9 +43,14 @@ const FormItem = styled.div`
   }
   button {
     border: 1px solid var(--textNormal);
-    background-color: var(--bg);
-    color: var(--textNormal);
+    background-color: var(--button);
+    color: var(--buttonText);
     border-radius: 4px;
+  }
+  button:hover {
+    pointer: cursor;
+    background-color: var(--buttonActive);
+    color: var(--buttonTextActive);
   }
 `
 

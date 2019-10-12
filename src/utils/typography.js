@@ -39,9 +39,7 @@ moragaTheme.overrideThemeStyles = () => ({
   small: {
     color: "var(--textSmall)",
   },
-  span: {
-    color: "var(--textNormal)",
-  },
+
   li: {
     color: "var(--textEmphasis)",
   },

@@ -46,8 +46,7 @@ const DrawerWrapper = styled.nav`
   position: fixed;
   top: 0;
   right: 0;
-  width: 70%;
-  max-width: 400px;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;

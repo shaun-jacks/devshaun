@@ -49,15 +49,6 @@ body.dark {
   background-color: #d7dfed;
 }
 
-.gatsby-highlight {
-  background: black;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background-color: black;
-}
-
 .social-login-button {
   border: 1px solid var(--textNormal);
   background-color: var(--button);
