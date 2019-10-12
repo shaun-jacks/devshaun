@@ -9,7 +9,7 @@ class Comments extends Component {
   state = {
     comments: [],
     commentBody: "",
-    error: false,
+    errors: {},
   }
 
   async componentDidMount() {
@@ -33,12 +33,16 @@ class Comments extends Component {
     e.preventDefault()
     const { slug } = this.props
     const { commentBody } = this.state
+    // Strip html tags
+    const regex = /(<([^>]+)>)/gi
+    const result = commentBody.replace(regex, "")
+    // obtain token before sending request
     const token = window.localStorage.getItem("token")
     const url = `${config.serverEndpoint}/api/comment${slug}`
     const res = await axios.post(
       url,
       {
-        body: commentBody,
+        body: result,
       },
       {
         headers: {

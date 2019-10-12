@@ -2,6 +2,8 @@ import React from "react"
 import "../global.css"
 import Layout from "../templates/Layout"
 import styled from "styled-components"
+import config from "../config/config"
+import axios from "axios"
 
 const FormWrapper = styled.div`
   display: flex;
@@ -59,7 +61,11 @@ export default class contactPage extends React.Component {
     name: "",
     email: "",
     message: "",
+    submitting: false,
+    success: false,
+    error: false,
   }
+
   handleInputChange = event => {
     const target = event.target
     const value = target.value
@@ -68,55 +74,99 @@ export default class contactPage extends React.Component {
       [name]: value,
     })
   }
-  handleSubmit = event => {
+
+  handleSubmit = async event => {
     event.preventDefault()
-    alert(`Welcome ${this.state.name}!`)
+    let { name, email, message } = this.state
+    // Strip html tags
+    const regex = /(<([^>]+)>)/gi
+    name = name.replace(regex, "")
+    email = email.replace(regex, "")
+    message = message.replace(regex, "")
+    this.setState({ submitting: true })
+    const url = `${config.serverEndpoint}/api/email`
+    try {
+      const res = await axios.post(url, {
+        name,
+        email,
+        message,
+      })
+      console.log(res)
+      if (res.status >= 400 && res.status < 500) {
+        this.setState({ error: true, submitting: false, success: false })
+      } else {
+        this.setState({
+          submitting: false,
+          success: true,
+        })
+      }
+    } catch (error) {
+      console.log(error)
+      this.setState({ error: true, submitting: false, success: false })
+    }
   }
   render() {
+    const { submitting, success, error } = this.state
     return (
       <Layout>
-        <FormWrapper>
-          <form
-            name="contact"
-            method="post"
-            netlify-honeypot="bot-field"
-            data-netlify="true"
-          >
-            <input type="hidden" name="bot-field" />
-            <FormItem>
-              <label>Name</label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter your name"
-                value={this.state.name}
-                onChange={this.handleInputChange}
-              />
-            </FormItem>
-            <FormItem>
-              <label>Email</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter your email address"
-                value={this.state.email}
-                onChange={this.handleInputChange}
-              />
-            </FormItem>
-            <FormItem>
-              <label>Message</label>
-              <textarea
-                name="message"
-                placeholder="Your message here..."
-                value={this.state.message}
-                onChange={this.handleInputChange}
-              ></textarea>
-            </FormItem>
-            <FormItem>
-              <button type="submit">Submit</button>
-            </FormItem>
-          </form>
-        </FormWrapper>
+        {error ? (
+          <div>
+            <p>An error occurred sending message, please try again later...</p>
+          </div>
+        ) : (
+          !submitting &&
+          !success && (
+            <FormWrapper>
+              <form onSubmit={this.handleSubmit}>
+                <FormItem>
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    value={this.state.name}
+                    onChange={this.handleInputChange}
+                    required
+                  />
+                </FormItem>
+                <FormItem>
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    value={this.state.email}
+                    onChange={this.handleInputChange}
+                    required
+                  />
+                </FormItem>
+                <FormItem>
+                  <label>Message</label>
+                  <textarea
+                    name="message"
+                    placeholder="Your message here..."
+                    value={this.state.message}
+                    onChange={this.handleInputChange}
+                    required
+                  ></textarea>
+                </FormItem>
+                <FormItem>
+                  <button type="submit">Submit</button>
+                </FormItem>
+              </form>
+            </FormWrapper>
+          )
+        )}
+        {submitting && !success && (
+          <div>
+            <p>Sending message...</p>
+          </div>
+        )}
+        {!submitting && success && (
+          <div>
+            <p>Message sent!</p>
+          </div>
+        )}
       </Layout>
     )
   }
