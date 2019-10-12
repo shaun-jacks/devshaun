@@ -7,33 +7,11 @@ import styled from "styled-components"
 import TagList from "../components/TagList"
 import axios from "axios"
 import Comments from "./Comments"
-import { serverEndpoint } from "../config/config"
+import config from "../config/config"
 
 const PostWrapper = styled.div``
 
 class PageTemplate extends Component {
-  state = {
-    comments: [],
-    error: false,
-  }
-
-  async componentDidMount() {
-    const { slug } = this.props.pageContext
-    console.log(`${serverEndpoint}/api/comment${slug}`)
-
-    try {
-      const response = await axios.get(
-        `https://immense-shelf-15583.herokuapp.com/api/comment${slug}`
-      )
-      const comments = response.data
-      console.log(comments)
-      this.setState({ comments })
-    } catch (error) {
-      console.log(error)
-      this.setState({ error: true })
-    }
-  }
-
   render() {
     const { mdx } = this.props.data
 
@@ -51,7 +29,8 @@ class PageTemplate extends Component {
             style={{ marginBottom: "2em" }}
           />
           <MDXRenderer>{mdx.body}</MDXRenderer>
-          <Comments comments={this.state.comments} slug={mdx.fields.slug} />
+          <a name="comments"></a>
+          <Comments slug={mdx.fields.slug} />
         </PostWrapper>
       </Layout>
     )

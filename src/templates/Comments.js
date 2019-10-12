@@ -2,23 +2,69 @@ import React, { Component } from "react"
 import CommentForm from "../components/CommentForm"
 import moment from "moment"
 import { rhythm } from "../utils/typography"
+import axios from "axios"
+import config from "../config/config"
 
 class Comments extends Component {
   state = {
-    comments: this.props.comments || [],
-    newComment: {
-      slug: this.props.slug,
-      body: "",
-      name: "",
-      userId: "",
-    },
-    submitting: false,
+    comments: [],
+    commentBody: "",
     error: false,
   }
 
+  async componentDidMount() {
+    const { slug } = this.props
+    console.log(`${config.serverEndpoint}/api/comment${slug}`)
+
+    try {
+      const response = await axios.get(
+        `${config.serverEndpoint}/api/comment${slug}`
+      )
+      const comments = response.data
+      console.log(comments)
+      this.setState({ comments })
+    } catch (error) {
+      console.log(error)
+      this.setState({ error: true })
+    }
+  }
+
+  onSubmitComment = async e => {
+    e.preventDefault()
+    const { slug } = this.props
+    const { commentBody } = this.state
+    const token = window.localStorage.getItem("token")
+    const url = `${config.serverEndpoint}/api/comment${slug}`
+    const res = await axios.post(
+      url,
+      {
+        body: commentBody,
+      },
+      {
+        headers: {
+          "x-auth-token": token,
+        },
+      }
+    )
+    const newComment = res.data
+    const { comments } = this.state
+    this.setState(prevState => ({
+      ...prevState,
+      comments: [newComment, ...comments],
+      commentBody: "",
+    }))
+  }
+
+  handleCommentChange = e => {
+    const { name, value } = e.target
+    this.setState({
+      [name]: value,
+    })
+  }
+
   render() {
-    const { comments, slug } = this.props
-    console.log(comments)
+    const { slug } = this.props
+    const { comments } = this.state
     return (
       <div>
         <h3>Leave a comment!</h3>
@@ -32,7 +78,12 @@ class Comments extends Component {
             </div>
           )
         })}
-        <CommentForm slug={slug} />
+        <CommentForm
+          slug={slug}
+          onSubmitComment={this.onSubmitComment.bind(this)}
+          handleCommentChange={this.handleCommentChange.bind(this)}
+          commentBody={this.state.commentBody}
+        />
       </div>
     )
   }

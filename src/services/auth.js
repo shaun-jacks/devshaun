@@ -32,42 +32,38 @@ export const getUser = () => {
   return {}
 }
 
-export const logout = slug => {
+export const logout = () => {
   window.localStorage.removeItem("token")
   window.localStorage.removeItem("gatsbyUser")
   setAuthToken(false)
-  window.location = slug
 }
 
-export const handleLogin = async (
-  access_token,
-  serverEndpoint,
-  provider,
-  slug
-) => {
-  console.log(access_token)
-  console.log(serverEndpoint)
-  console.log(provider)
-  const res = await axios.post(`${serverEndpoint}/api/auth/${provider}`, {
-    access_token: access_token,
-  })
-  console.log(res)
-  const jwt = res.headers["x-auth-token"]
-  console.log(jwt)
-  let user
-  // decode and verify token
-  try {
-    user = jwt_decode(jwt)
-    setAuthToken(jwt)
-    if (window !== undefined) {
-      localStorage.setItem("token", jwt)
+export const handleLogin = async (access_token, serverEndpoint, provider) => {
+  return new Promise(async (resolve, reject) => {
+    console.log(access_token)
+    console.log(serverEndpoint)
+    console.log(provider)
+    const res = await axios.post(`${serverEndpoint}/api/auth/${provider}`, {
+      access_token: access_token,
+    })
+    console.log(res)
+    const jwt = res.headers["x-auth-token"]
+    console.log(jwt)
+    let user
+    // decode and verify token
+    try {
+      user = jwt_decode(jwt)
+      setAuthToken(jwt)
+      if (window !== undefined) {
+        localStorage.setItem("token", jwt)
+      }
+    } catch (err) {
+      console.log(err)
+      return reject(err)
     }
-  } catch (err) {
-    console.log(err)
-    user = {}
-  }
-  localStorage.setItem("gatsbyUser", JSON.stringify(user))
-  window.location = slug
+    localStorage.setItem("gatsbyUser", JSON.stringify(user))
+    return resolve()
+  })
 }
 
 export const isLoggedIn = () => {
