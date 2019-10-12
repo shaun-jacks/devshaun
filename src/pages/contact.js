@@ -89,7 +89,7 @@ export default class contactPage extends React.Component {
       const res = await axios.post(url, {
         name,
         email,
-        message,
+        body: message,
       })
       console.log(res)
       if (res.status >= 400 && res.status < 500) {
