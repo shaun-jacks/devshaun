@@ -11,13 +11,22 @@ const LayoutWrapper = styled.div`
   margin-right: auto;
   max-width: ${rhythm(24)};
   padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
+  flex: 1;
 `
 
 const Layout = ({ children, HeaderTitle }) => {
   return (
-    <div style={{ height: "100%", backgroundColor: "var(--bg)" }}>
+    <div
+      style={{
+        height: "100%",
+        backgroundColor: "var(--bg)",
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
       <Header HeaderTitle={HeaderTitle} />
-      <LayoutWrapper>{children}</LayoutWrapper>
+      <LayoutWrapper style={{ flex: "1" }}>{children}</LayoutWrapper>
       <Footer />
     </div>
   )

@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import ThemeToggle from "../components/ThemeToggle"
+import { withPrefix } from "gatsby"
 
 // Optional background color: #11111;
 const MenuWrapper = styled.div`
@@ -69,33 +70,6 @@ const StyledLink = styled(props => <Link {...props} />)`
   &:hover {
     text-decoration: none;
   }
-  /*
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background-color: #419eda;
-    left: 0;
-    transform: scaleX(0);
-    transition: all 0.25s;
-  }
-
-  &::before {
-    top: 0;
-    transform-origin: left;
-  }
-
-  &::after {
-    bottom: 0;
-    transform-origin: right;
-  }
-
-  &:hover::before,
-  &:hover::after {
-    transform: scaleX(1);
-  } */
 `
 
 const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {

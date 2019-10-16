@@ -24,7 +24,7 @@ const menuLinks = [
   },
   {
     name: "Resume",
-    link: "resume",
+    link: "Jackson_Resume_October19_Software.pdf",
   },
 ]
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import Layout from "../templates/Layout"
-import PostList from "../templates/PostList"
 import styled from "styled-components"
 import Card from "../components/Card"
 import "../global.css"
@@ -36,7 +35,7 @@ const CategoryItem = styled.h6`
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 1rem;
 `
 
@@ -123,7 +122,7 @@ export default class BlogPage extends Component {
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "flex-start",
             flexWrap: "wrap",
           }}
         >
