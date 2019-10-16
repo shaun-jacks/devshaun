@@ -1,12 +1,12 @@
 steps:
   - name: node:12.3.1
-    entrypoint: yarn
+    entrypoint: npm
     args: ["install"]
   - name: node:12.3.1
-    entrypoint: yarn
-    args: ["add", "firebase-tools"]
+    entrypoint: npm
+    args: ["install", "firebase-tools"]
   - name: node:12.3.1
-    entrypoint: yarn
+    entrypoint: npm
     args: ["build"]
   - name: "node:12.3.1"
     entrypoint: "./node_modules/.bin/firebase"
