@@ -12,20 +12,27 @@ const PostWrapper = styled.div``
 class PageTemplate extends Component {
   render() {
     const { mdx } = this.props.data
+    let featuredImage
+
+    if (mdx.frontmatter.featuredImage) {
+      featuredImage = mdx.frontmatter.featuredImage.childImageSharp.fluid
+    }
 
     return (
       <Layout HeaderTitle={`${mdx.frontmatter.title} - Dev Shaun`}>
         <PostWrapper>
           <h1>{mdx.frontmatter.title}</h1>
           <p>
-            {mdx.frontmatter.author} - {mdx.timeToRead} min -{" "}
+            {mdx.frontmatter.author} - {mdx.timeToRead} min -
             {mdx.frontmatter.date}
           </p>
           <TagList tags={mdx.frontmatter.tags} />
-          <Img
-            fluid={mdx.frontmatter.featuredImage.childImageSharp.fluid}
-            style={{ marginBottom: "2em" }}
-          />
+          {featuredImage && (
+            <Img
+              fluid={mdx.frontmatter.featuredImage.childImageSharp.fluid}
+              style={{ marginBottom: "2em" }}
+            />
+          )}
           <MDXRenderer>{mdx.body}</MDXRenderer>
           <Comments slug={mdx.fields.slug} />
         </PostWrapper>

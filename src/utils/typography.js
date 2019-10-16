@@ -41,7 +41,7 @@ moragaTheme.overrideThemeStyles = () => ({
   },
 
   li: {
-    color: "var(--textEmphasis)",
+    color: "var(--textNormal)",
   },
   blockquote: {
     color: "var(--headerNormal)",

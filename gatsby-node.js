@@ -35,7 +35,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createPages = async ({ graphql, actions, reporter }) => {
   // Destructure the createPage function from the actions object
   const { createPage } = actions
+
   const tagTemplate = path.resolve("src/templates/tags.js")
+  const postPage = path.resolve("src/templates/Post.js")
+  const pagePage = path.resolve("src/templates/Page.js")
+
   const result = await graphql(`
     query {
       postsMdx: allMdx(
@@ -50,6 +54,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
             frontmatter {
               tags
+              template
             }
           }
         }
@@ -66,25 +71,46 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query')
   }
 
-  // Create blog post pages.
-  const posts = result.data.postsMdx.edges
-
-  // We'll call `createPage` for each result
-  posts.forEach(({ node }, index) => {
-    createPage({
-      // This is the slug we created before
-      // (or `node.frontmatter.slug`)
-      path: node.fields.slug,
-      // This component will wrap our MDX content
-      component: path.resolve(`./src/templates/Post.js`),
-      // We can use the values in this context in
-      // our page layout component
-      context: {
-        slug: node.fields.slug,
-        id: node.id,
-      },
-    })
+  // Create pages
+  result.data.postsMdx.edges.forEach(({ node }, index) => {
+    if (node.frontmatter.template && node.frontmatter.template === "page") {
+      console.log("PAGE SEEN AT")
+      console.log(node.fields.slug)
+      createPage({
+        path: node.fields.slug,
+        component: pagePage,
+        context: {
+          id: node.id,
+          slug: node.fields.slug,
+        },
+      })
+    } else {
+      createPage({
+        // This is the slug we created before
+        // (or `node.frontmatter.slug`)
+        path: node.fields.slug,
+        // This component will wrap our MDX content
+        component: postPage,
+        // We can use the values in this context in
+        // our page layout component
+        context: {
+          slug: node.fields.slug,
+          id: node.id,
+        },
+      })
+    }
   })
+
+  // Create page for privacy policy
+
+  // createPage({
+  //   path: path.resolve(`/privacy-policy/`),
+  //   // This component will wrap our MDX content
+  //   component: path.resolve(`./src/templates/Post.js`),
+  //   // We can use the values in this context in
+  //   // our page layout component
+  // })
+
   // Extract tag data from query
   const tags = result.data.tagsGroup.group
   // Make tag pages
