@@ -6,7 +6,7 @@ const Header = ({ children, HeaderTitle }) => {
   return (
     <React.Fragment>
       <Helmet
-        title={HeaderTitle || "Dev Shaun"}
+        title={HeaderTitle || "Shaun Jackson"}
         meta={[
           {
             name: "description",

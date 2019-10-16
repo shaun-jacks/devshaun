@@ -4,13 +4,12 @@ import SideDrawer from "../components/SideDrawer"
 import Backdrop from "../components/Backdrop"
 import Hamburger from "../components/Hamburger"
 
-const siteTitle = "Dev Shaun"
+const siteTitle = "shaunjacks"
 const menuLinks = [
   {
     name: "Home",
     link: "/",
   },
-
   {
     name: "Me",
     link: "/me",
@@ -20,8 +19,12 @@ const menuLinks = [
     link: "/contact",
   },
   {
-    name: "Articles",
+    name: "Blog",
     link: "/blog",
+  },
+  {
+    name: "Resume",
+    link: "resume",
   },
 ]
 
