@@ -4,7 +4,6 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import ThemeToggle from "../components/ThemeToggle"
-import { withPrefix } from "gatsby"
 
 // Optional background color: #11111;
 const MenuWrapper = styled.div`
@@ -50,6 +49,11 @@ const NavList = styled.nav`
   display: flex;
   flex: 1;
   margin: 0 auto;
+  a {
+    :hover {
+      text-decoration: none;
+    }
+  }
 
   @media (max-width: 768px) {
      {
@@ -62,6 +66,17 @@ const Spacer = styled.div`
   flex: 0.5;
 `
 const StyledLink = styled(props => <Link {...props} />)`
+  padding: 0.5rem 0;
+  position: relative;
+  letter-spacing: 2px;
+  color: #419eda;
+
+  &:hover {
+    text-decoration: none;
+  }
+`
+
+const downloadLink = styled(props => <a {...props} />)`
   padding: 0.5rem 0;
   position: relative;
   letter-spacing: 2px;
@@ -131,9 +146,23 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
                   color: "#001E30",
                 }}
               >
-                <StyledLink activeClassName="active" to={link.link}>
-                  {link.name !== "Home" ? link.name : ""}
-                </StyledLink>
+                {link.name === "Resume" ? (
+                  <a
+                    style={{
+                      position: "relative",
+                      padding: "0.5rem 0",
+                      letterSpacing: "2px",
+                    }}
+                    href={link.link}
+                    download
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <StyledLink activeClassName="active" to={link.link}>
+                    {link.name !== "Home" ? link.name : ""}
+                  </StyledLink>
+                )}
               </li>
             ))}
           </NavList>
