@@ -74,9 +74,22 @@ const sideDrawer = ({ drawerClickHandler, menuLinks, isOpen }) => {
               color: "#001E30",
             }}
           >
-            <StyledLink to={link.link}>
-              {link.name !== "Home" ? link.name : ""}
-            </StyledLink>
+            {link.name === "Resume" ? (
+              <a
+                style={{
+                  position: "relative",
+                  padding: "0.5rem 0",
+                  letterSpacing: "2px",
+                }}
+                href={link.link}
+              >
+                {link.name}
+              </a>
+            ) : (
+              <StyledLink activeClassName="active" to={link.link}>
+                {link.name !== "Home" ? link.name : ""}
+              </StyledLink>
+            )}
           </li>
         ))}
       </ul>

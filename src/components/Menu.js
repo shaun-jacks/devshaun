@@ -154,7 +154,6 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
                       letterSpacing: "2px",
                     }}
                     href={link.link}
-                    download
                   >
                     {link.name}
                   </a>
