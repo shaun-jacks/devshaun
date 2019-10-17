@@ -3,17 +3,12 @@ import Menu from "../components/Menu"
 import SideDrawer from "../components/SideDrawer"
 import Backdrop from "../components/Backdrop"
 import Hamburger from "../components/Hamburger"
-import resume from "../images/Jackson_Resume_October19_Software.pdf"
 
 const siteTitle = "shaunjacks"
 const menuLinks = [
   {
     name: "Home",
     link: "/",
-  },
-  {
-    name: "Me",
-    link: "/me",
   },
   {
     name: "Contact",
@@ -25,7 +20,8 @@ const menuLinks = [
   },
   {
     name: "Resume",
-    link: "Jackson_Resume_October19_Software.pdf",
+    link:
+      "https://drive.google.com/file/d/1F8nhcfUE5EIyxGxLdlzluxhm__6UauV4/view?usp=sharing",
   },
 ]
 

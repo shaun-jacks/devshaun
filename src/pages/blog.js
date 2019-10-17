@@ -118,6 +118,9 @@ export default class BlogPage extends Component {
 
     return (
       <Layout>
+        <h2>
+          NOTE: This blog is in development and these are only design props
+        </h2>
         <h2>What do you want to read about?</h2>
         <div
           style={{

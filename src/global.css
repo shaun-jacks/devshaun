@@ -9,6 +9,7 @@ html {
   --buttonTextActive: white;
   --buttonActive: #b0b0b0;
   --bgAccent: white;
+  --bgAccentContainer: #d7dfed;
   --headerNormal: hsla(0, 0%, 0%, 0.85);
   --textNormal: hsla(0, 0%, 0%, 0.9);
   --textSmall: hsla(0, 0%, 0%, 0.65);
@@ -27,6 +28,7 @@ body.dark {
   --buttonText: #419eda;
   --buttonTextActive: white;
   --bgAccent: #181818;
+  --bgAccentContainer: #181818;
   --headerNormal: #d7dfed;
   --textNormal: #b3b9c5;
   --textSmall: #b3b9c5;
