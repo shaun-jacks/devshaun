@@ -16,7 +16,7 @@
 
 ### User can login through facebook
 
-<img  src="https://raw.github.com/shaun-jacks/shaunjacks.com/master/readme-media/shaunjacks-fb-login.png"  title="User facebook login"  alt="User facebook login">
+<img src="https://raw.github.com/shaun-jacks/shaunjacks.com/master/readme-media/shaunjacks-fb-login.png" width="400px" title="User facebook login" alt="User facebook login">
 
 ## Technologies and Ideas Used (Frontend)
 
