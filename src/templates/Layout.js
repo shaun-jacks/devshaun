@@ -9,9 +9,8 @@ const LayoutWrapper = styled.div`
   margin-top: 2.5em;
   margin-left: auto;
   margin-right: auto;
-  max-width: ${rhythm(20)};
+  max-width: ${rhythm(24)};
   padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
-  flex: 1;
 `
 
 const Layout = ({ children, HeaderTitle }) => {
@@ -20,14 +19,20 @@ const Layout = ({ children, HeaderTitle }) => {
       style={{
         height: "100%",
         backgroundColor: "var(--bg)",
+        margin: "0",
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        minHeight: "100vh",
+        justifyContent: "space-between",
       }}
     >
-      <Header HeaderTitle={HeaderTitle} />
-      <LayoutWrapper style={{ flex: "1" }}>{children}</LayoutWrapper>
-      <Footer />
+      <div>
+        <Header HeaderTitle={HeaderTitle} />
+        <LayoutWrapper>{children}</LayoutWrapper>
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   )
 }

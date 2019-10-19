@@ -55,8 +55,11 @@ const StyledLink = styled(props => <Link {...props} />)`
 const Card = ({ post }) => {
   let { date, title, author, tags } = post.frontmatter
   let { excerpt, timeToRead } = post
+  let featuredImage
 
-  let featuredImgFluid = post.frontmatter.featuredImage.childImageSharp.fluid
+  if (post.frontmatter.featuredImage) {
+    featuredImage = post.frontmatter.featuredImage.childImageSharp.fluid
+  }
   let { slug } = post.fields
 
   return (
@@ -65,7 +68,11 @@ const Card = ({ post }) => {
         <CardContent>
           <div className="image">
             <Link to={slug}>
-              <Image fluid={featuredImgFluid} />
+              {featuredImage && (
+                <Image
+                  fluid={post.frontmatter.featuredImage.childImageSharp.fluid}
+                />
+              )}
             </Link>
           </div>
           <div className="info">
