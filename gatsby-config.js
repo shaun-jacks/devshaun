@@ -17,6 +17,21 @@ module.exports = {
     ],
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Shaun Jackson Blog`,
+        short_name: `Blog - SJ`,
+        start_url: `/`,
+        background_color: `#6b37bf`,
+        theme_color: `#6b37bf`,
+        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
+        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
+        display: `standalone`,
+        icon: `src/images/icon.jpeg`, // This path is relative to the root of the site.
+      },
+    },
+    `gatsby-plugin-offline`,
     "gatsby-plugin-dark-mode",
     {
       resolve: `gatsby-plugin-typography`,

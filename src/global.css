@@ -10,7 +10,7 @@ html {
   --buttonActive: #b0b0b0;
   --bgAccent: white;
   --bgAccentContainer: #d7dfed;
-  --bgCodeContainer: white;
+  --bgCodeContainer: #ebebeb;
   --headerNormal: hsla(0, 0%, 0%, 0.85);
   --textNormal: hsla(0, 0%, 0%, 0.9);
   --textSmall: hsla(0, 0%, 0%, 0.65);
@@ -97,11 +97,6 @@ body.dark {
 
 .gatsby-resp-image-wrapper {
   margin: 2em 0;
-}
-
-pre[class*="language-"],
-:not(pre) > code[class*="language-"] {
-  background: var(--bgCodeContainer);
 }
 
 code[class*="language-"] {

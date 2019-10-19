@@ -2,9 +2,9 @@ import React from "react"
 import "../global.css"
 import GitHubButton from "react-github-btn"
 import Layout from "../templates/Layout"
-import shaun from "../images/shaun-avatar.png"
+import shaun from "../images/shaun-coffee-zoom.png"
 import { FaLinkedinIn } from "react-icons/fa"
-import { Link } from "gatsby"
+import Img from "gatsby-image"
 import styled from "styled-components"
 
 const StyledLink = styled(props => <a {...props} />)`
@@ -24,7 +24,8 @@ const StyledLink = styled(props => <a {...props} />)`
   }
 `
 
-export default () => {
+export default ({ data }) => {
+  const shaunAvatar = data.allFile.edges[0].node.childImageSharp.fluid
   return (
     <Layout>
       <div
@@ -39,14 +40,9 @@ export default () => {
           background: "var(--bgAccentContainer)",
         }}
       >
-        <img
-          style={{
-            flex: "1",
-            margin: "0.5rem 1rem",
-            borderRadius: "12px",
-            maxWidth: "200px",
-          }}
-          src={shaun}
+        <Img
+          fluid={shaunAvatar}
+          style={{ flex: "1", margin: "0.5rem 1rem", borderRadius: "12px" }}
         />
         <div style={{ marginTop: "1em" }}>
           <h2>Hi! I'm Shaun</h2>
@@ -83,3 +79,25 @@ export default () => {
     </Layout>
   )
 }
+
+export const pageQuery = graphql`
+  query indexQuery {
+    allFile(
+      filter: {
+        sourceInstanceName: { eq: "images" }
+        name: { eq: "shaun-coffee-zoom" }
+      }
+    ) {
+      edges {
+        node {
+          id
+          childImageSharp {
+            fluid(maxWidth: 700) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+  }
+`
