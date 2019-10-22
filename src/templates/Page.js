@@ -11,7 +11,7 @@ class PageTemplate extends Component {
     const { mdx } = this.props.data
 
     return (
-      <Layout HeaderTitle={`${mdx.frontmatter.title} - Shaun Jackson`}>
+      <Layout pageSEO={mdx}>
         <PostWrapper>
           <h1>{mdx.frontmatter.title}</h1>
           <p>{mdx.frontmatter.date}</p>

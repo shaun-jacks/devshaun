@@ -2,7 +2,6 @@ import React from "react"
 import "../global.css"
 import GitHubButton from "react-github-btn"
 import Layout from "../templates/Layout"
-import shaun from "../images/shaun-coffee-zoom.png"
 import { FaLinkedinIn } from "react-icons/fa"
 import Img from "gatsby-image"
 import styled from "styled-components"
@@ -48,9 +47,9 @@ export default ({ data }) => {
           <h2>Hi! I'm Shaun</h2>
           <p>
             As a curious soul, I value continual learning and am passionate
-            about full stack development. I bring 3+ years experience- ranging
-            from low level embedded systems to both frontend and backend
-            services.
+            about software engineering and data science. I bring 3+ years
+            experience- ranging from low level embedded systems to both frontend
+            and backend services.
           </p>
           <div
             style={{

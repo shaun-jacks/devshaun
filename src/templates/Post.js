@@ -19,7 +19,7 @@ class PageTemplate extends Component {
     }
 
     return (
-      <Layout HeaderTitle={`${mdx.frontmatter.title} - Shaun Jackson`}>
+      <Layout postSEO={mdx}>
         <PostWrapper>
           <h1>{mdx.frontmatter.title}</h1>
           <p>
@@ -52,6 +52,7 @@ export const pageQuery = graphql`
       fields {
         slug
       }
+      excerpt(pruneLength: 60)
       frontmatter {
         title
         date(formatString: "DD MMMM, YYYY")

@@ -8,9 +8,11 @@ html {
   --buttonText: hsla(0, 0%, 0%, 0.85);
   --buttonTextActive: white;
   --buttonActive: #b0b0b0;
-  --bgAccent: white;
-  --bgAccentContainer: #d7dfed;
-  --bgCodeContainer: #ebebeb;
+  --bgAccent: #edecec;
+  --bgAccentContainer: #edecec;
+  --bgCodeContainer: #f7f7f7;
+  --codeText: #333;
+  --codeBoolString: #007020;
   --headerNormal: hsla(0, 0%, 0%, 0.85);
   --textNormal: hsla(0, 0%, 0%, 0.9);
   --textSmall: hsla(0, 0%, 0%, 0.65);
@@ -26,16 +28,18 @@ body {
   flex-direction: column;
 }
 body.dark {
-  --bg: #202020;
-  --button: #181818;
+  --bg: #1c1f2b;
+  --button: #2d3143;
   --buttonActive: #b3b9c5a6;
   --buttonText: #419eda;
   --buttonTextActive: white;
-  --bgAccent: #181818;
-  --bgAccentContainer: #181818;
-  --bgCodeContainer: #181818;
-  --headerNormal: #d7dfed;
-  --textNormal: #b3b9c5;
+  --bgAccent: #2d3143;
+  --bgAccentContainer: #2d3143;
+  --bgCodeContainer: #2d3143;
+  --codeText: #9dbed8;
+  --codeBoolString: #00f746;
+  --headerNormal: #fffffa;
+  --textNormal: #bdcadb;
   --textSmall: #b3b9c5;
   --textEmphasis: #d7dfed;
   --quoteBlock: #b3b9c5a6;
@@ -53,7 +57,7 @@ body.dark {
 .dark-mode-toggle.react-toggle .react-toggle-track,
 .dark-mode-toggle.react-toggle:hover:not(.react-toggle--disabled)
   .react-toggle-track {
-  background-color: #d7dfed;
+  background-color: #edecec;
 }
 
 .social-login-button {
@@ -91,7 +95,6 @@ body.dark {
   background-color: var(--bgCodeContainer);
   border-radius: 0.3em;
   margin: 1em 0;
-  padding: 0.5em;
   overflow: auto;
 }
 
@@ -101,4 +104,48 @@ body.dark {
 
 code[class*="language-"] {
   max-width: 100%;
+}
+
+pre[class*="language-"],
+:not(pre) > code[class*="language-"] {
+  background: var(--bgCodeContainer);
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: var(--codeText);
+}
+
+.token.number {
+  color: #40a070;
+}
+
+.token.punctuation,
+.token.selector {
+  color: var(--codeText);
+}
+
+.token.operator {
+  color: #419eda;
+}
+
+.token.comment {
+  color: #60a0b0;
+  font-style: italic;
+}
+
+.token.string {
+  color: var(--codeBoolString);
+}
+
+.token.boolean {
+  color: var(--codeBoolString);
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  font-family: Consolas, Monaco, Lucida Console, Liberation Mono,
+    DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New;
+  color: var(--codeText);
+  text-shadow: none;
 }

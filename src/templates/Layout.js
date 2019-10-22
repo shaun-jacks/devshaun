@@ -13,7 +13,7 @@ const LayoutWrapper = styled.div`
   padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
 `
 
-const Layout = ({ children, HeaderTitle }) => {
+const Layout = ({ children, postSEO, pageSEO }) => {
   return (
     <div
       style={{
@@ -27,7 +27,7 @@ const Layout = ({ children, HeaderTitle }) => {
       }}
     >
       <div>
-        <Header HeaderTitle={HeaderTitle} />
+        <Header postSEO={postSEO} pageSEO={pageSEO} />
         <LayoutWrapper>{children}</LayoutWrapper>
       </div>
       <div>

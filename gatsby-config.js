@@ -1,6 +1,11 @@
 module.exports = {
   siteMetadata: {
     title: "Shaun's Blog",
+    titleTemplate: "%s · Software Developer",
+    description:
+      "Software Development Blog | Backend | Frontend | Data Science",
+    url: "https://shaunjacks.com",
+    image: "/icon.jpeg",
     menuLinks: [
       {
         name: "Blog",
