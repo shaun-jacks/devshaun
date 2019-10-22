@@ -31,7 +31,7 @@ class ProjectTemplate extends Component {
 export default ProjectTemplate
 
 export const pageQuery = graphql`
-  query ProjectQuery($id: String) {
+  query ProjectPageQuery($id: String) {
     mdx(id: { eq: $id }) {
       id
       body
