@@ -39,6 +39,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const tagTemplate = path.resolve("src/templates/tags.js")
   const postPage = path.resolve("src/templates/Post.js")
   const pagePage = path.resolve("src/templates/Page.js")
+  const projectPage = path.resolve("src/templates/Project.js")
 
   const result = await graphql(`
     query {
@@ -84,13 +85,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           slug: node.fields.slug,
         },
       })
-    } else {
+    } else if (node.frontmatter.template === "blog") {
       createPage({
         // This is the slug we created before
         // (or `node.frontmatter.slug`)
         path: node.fields.slug,
         // This component will wrap our MDX content
         component: postPage,
+        // We can use the values in this context in
+        // our page layout component
+        context: {
+          slug: node.fields.slug,
+          id: node.id,
+        },
+      })
+    } else if (node.frontmatter.template === "project") {
+      createPage({
+        // This is the slug we created before
+        // (or `node.frontmatter.slug`)
+        path: node.fields.slug,
+        // This component will wrap our MDX content
+        component: projectPage,
         // We can use the values in this context in
         // our page layout component
         context: {

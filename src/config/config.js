@@ -9,8 +9,7 @@ const config = {
     pathPrefix: "",
     dateFromFormat: "YYYY-MM-DD",
     dateFormat: "MMMM Do, YYYY",
-    siteDescription:
-      "Software Development Blog | Backend | Frontend | Data Science",
+    siteDescription: "Software and Data Science Blog",
     menuLinks: [
       {
         name: "Home",

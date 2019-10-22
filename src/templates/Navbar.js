@@ -3,29 +3,12 @@ import Menu from "../components/Menu"
 import SideDrawer from "../components/SideDrawer"
 import Backdrop from "../components/Backdrop"
 import Hamburger from "../components/Hamburger"
+import config from "../config/config"
 
 const siteTitle = "shaunjacks"
-const menuLinks = [
-  {
-    name: "Home",
-    link: "/",
-  },
-  {
-    name: "Contact",
-    link: "/contact",
-  },
-  {
-    name: "Blog",
-    link: "/blog",
-  },
-  {
-    name: "Resume",
-    link:
-      "https://drive.google.com/file/d/1F8nhcfUE5EIyxGxLdlzluxhm__6UauV4/view?usp=sharing",
-  },
-]
 
 const NavBar = () => {
+  const { siteMetadata } = config
   const [open, setOpen] = useState(false)
   const toggleOpen = () => setOpen(!open)
 
@@ -34,14 +17,14 @@ const NavBar = () => {
       <Menu
         drawerOpen={open}
         siteTitle={siteTitle}
-        menuLinks={menuLinks}
+        menuLinks={siteMetadata.menuLinks}
         click={toggleOpen}
         isOpen={open}
       />
       <Hamburger click={toggleOpen} isOpen={open} />
       <SideDrawer
         drawerClickHandler={toggleOpen}
-        menuLinks={menuLinks}
+        menuLinks={siteMetadata.menuLinks}
         isOpen={open}
       />
       {open && (
