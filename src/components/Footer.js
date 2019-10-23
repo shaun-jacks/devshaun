@@ -33,6 +33,7 @@ const Footer = () => {
       </div>
       <div style={{ flex: "1", display: "flex", flexDirection: "column" }}>
         <StyledLink to="/privacy-policy">Privacy Policy</StyledLink>
+        <StyledLink to="/cookie-policy">Cookie Policy</StyledLink>
         <StyledLink to="/terms-and-conditions">Terms and Conditions</StyledLink>
       </div>
     </FooterWrapper>

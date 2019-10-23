@@ -5,6 +5,8 @@ import Layout from "../templates/Layout"
 import { FaLinkedinIn } from "react-icons/fa"
 import Img from "gatsby-image"
 import styled from "styled-components"
+import CookieConsent from "react-cookie-consent"
+import { graphql } from "gatsby"
 
 const StyledLink = styled(props => <a {...props} />)`
   margin-left: 1em;
