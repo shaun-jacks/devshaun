@@ -25,7 +25,6 @@ export const setUser = () => {
 export const getUser = () => {
   let user = window.localStorage.getItem("gatsbyUser")
   user = JSON.parse(user)
-  console.log(user)
   if (!_.isEmpty(user)) {
     return user
   }
@@ -40,15 +39,10 @@ export const logout = () => {
 
 export const handleLogin = async (access_token, serverEndpoint, provider) => {
   return new Promise(async (resolve, reject) => {
-    console.log(access_token)
-    console.log(serverEndpoint)
-    console.log(provider)
     const res = await axios.post(`${serverEndpoint}/api/auth/${provider}`, {
       access_token: access_token,
     })
-    console.log(res)
     const jwt = res.headers["x-auth-token"]
-    console.log(jwt)
     let user
     // decode and verify token
     try {
@@ -58,7 +52,6 @@ export const handleLogin = async (access_token, serverEndpoint, provider) => {
         localStorage.setItem("token", jwt)
       }
     } catch (err) {
-      console.log(err)
       return reject(err)
     }
     localStorage.setItem("gatsbyUser", JSON.stringify(user))

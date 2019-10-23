@@ -19,6 +19,7 @@ html {
   --textEtc: hsla(0, 0%, 0%, 0.7);
   --textLink: #419eda;
   --quoteBlock: #00000021;
+  --bgBorderShadow: rgb(218, 218, 218);
 }
 
 body {
@@ -36,6 +37,7 @@ body.dark {
   --bgAccent: #2d3143;
   --bgAccentContainer: #2d3143;
   --bgCodeContainer: #2d3143;
+  --bgBorderShadow: rgba(45, 49, 67, 1);
   --codeText: #9dbed8;
   --codeBoolString: #00f746;
   --headerNormal: #fffffa;
@@ -143,9 +145,11 @@ pre[class*="language-"] {
 }
 
 code[class*="language-"],
-pre[class*="language-"] {
-  font-family: Consolas, Monaco, Lucida Console, Liberation Mono,
-    DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New;
+pre[class*="language-"],
+pre code {
+  font-family: Menlo, monospace;
   color: var(--codeText);
+  font-size: 14px;
+  font-weight: 400;
   text-shadow: none;
 }

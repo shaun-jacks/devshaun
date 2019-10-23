@@ -34,11 +34,23 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          fields {
+            slug
+          }
           frontmatter {
             author
             endDate(formatString: "MMMM YYYY")
             startDate(formatString: "MMMM YYYY")
             title
+            skills
+            description
+            featuredImage {
+              childImageSharp {
+                fluid(maxHeight: 400, maxWidth: 200) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
