@@ -23,18 +23,15 @@ const Layout = ({ children, postSEO, pageSEO }) => {
         backgroundColor: "var(--bg)",
         margin: "0",
         minHeight: "100vh",
+        display: "-webkit-box",
+        display: "-moz-box",
+        display: "-ms-flexbox",
+        display: "-webkit-flex",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
       }}
     >
-      <div>
-        <Header postSEO={postSEO} pageSEO={pageSEO} />
-        <LayoutWrapper>{children}</LayoutWrapper>
-      </div>
-      <div>
-        <Footer />
-      </div>
       <CookieConsent
         style={{
           background: "var(--bgCodeContainer)",
@@ -47,10 +44,18 @@ const Layout = ({ children, postSEO, pageSEO }) => {
           color: "var(--textNormal)",
         }}
       >
-        This website uses cookies to enhance the user experience. By using
-        shaunjacks.com, you accept our{" "}
-        <Link to="/cookie-policy">Cookie Policy</Link>
+        By using <Link to="/">shaunjacks.com</Link>, you accept our{" "}
+        <Link to="/cookie-policy">Cookie Policy</Link>.
       </CookieConsent>
+      <div>
+        <div>
+          <Header postSEO={postSEO} pageSEO={pageSEO} />
+        </div>
+        <LayoutWrapper>{children}</LayoutWrapper>
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   )
 }
