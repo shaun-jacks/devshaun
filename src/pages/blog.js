@@ -115,6 +115,7 @@ export default class BlogPage extends Component {
     let { filteredPosts, currentCategories, searchTitle } = this.state
     let filterCount = filteredPosts.length
     let categories = this.props.data.categories.group
+    console.log(filteredPosts)
 
     return (
       <Layout>

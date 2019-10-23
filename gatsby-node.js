@@ -86,6 +86,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         },
       })
     } else if (node.frontmatter.template === "blog") {
+      console.log(node.fields.slug)
       createPage({
         // This is the slug we created before
         // (or `node.frontmatter.slug`)
