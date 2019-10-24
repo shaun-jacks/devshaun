@@ -41,11 +41,9 @@ class ProjectTemplate extends Component {
             />
           )}
           <p>
-            <strong>From: </strong> {mdx.frontmatter.startDate}
-          </p>
-          <p>
-            <strong>To: </strong>
-            {mdx.frontmatter.endDate}
+            <strong>{mdx.frontmatter.startDate}</strong>
+            {" - "}
+            <strong>{mdx.frontmatter.endDate}</strong>
           </p>
           <MDXRenderer>{mdx.body}</MDXRenderer>
           <Comments slug={mdx.fields.slug} />
