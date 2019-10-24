@@ -92,12 +92,21 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 700,
+              wrapperStyle: `box-shadow: none;`,
             },
           },
+          `gatsby-remark-copy-linked-files`,
         ],
         // Had to include this too so images will render properly
         // https://github.com/gatsbyjs/gatsby/issues/15486
-        plugins: [`gatsby-remark-images`],
+        plugins: [`gatsby-remark-images`, `gatsby-remark-copy-linked-files`],
+      },
+    },
+    {
+      resolve: `gatsby-remark-images`,
+      options: {
+        maxWidth: 700,
+        wrapperStyle: `box-shadow: none;`,
       },
     },
   ],

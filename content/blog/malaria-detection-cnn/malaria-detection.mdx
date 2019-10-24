@@ -379,7 +379,12 @@ By looking at the above plot, we can possibly improve our model by choosing a ra
 
 To compare with the learning rate our original model used, we would call `?learn.fit_one_cycle`. This shows that the defauly learning rate used was `.003`. Our new learning rate will be of lower magnitude.
 
-We will first unfreeze our loaded model, and then call `learn.fit_one_cycle(4, max_lr=slice(1e-5,1e-3))`.
+We will first unfreeze our loaded model, and then call
+
+```python
+learn.fit_one_cycle(4, max_lr=slice(1e-5,1e-3))
+```
+
 As you can see, we will run `4` epochs, and use a range of learning rates by using the `max_lr` parameter.
 
 Let's see our results.
@@ -432,16 +437,6 @@ Don't forget to save!
 ```python
 learn.save('stage-2')
 ```
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-3-ca5cb8272ab7> in <module>()
-    ----> 1 learn.save('stage-2')
-
-
-    NameError: name 'learn' is not defined
 
 ## Summary
 

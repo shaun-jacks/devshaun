@@ -71,7 +71,7 @@ class Comments extends Component {
     const { comments } = this.state
     return (
       <div>
-        <h3>Leave a comment!</h3>
+        <h3>Questions, Suggestions, Ideas? Leave a comment!</h3>
         <hr />
         {comments.map((comment, i) => {
           return (

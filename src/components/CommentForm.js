@@ -51,7 +51,6 @@ class CommentForm extends Component {
   }
 
   handleFacebookLogin = async response => {
-    console.log(response)
     const redirectUrl = `${this.props.slug}#comments`
     console.log(redirectUrl)
     await handleLogin(response.accessToken, config.serverEndpoint, "facebook")
