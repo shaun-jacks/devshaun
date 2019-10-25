@@ -1,7 +1,7 @@
 const config = {
   serverEndpoint: "https://immense-shelf-15583.herokuapp.com",
   siteMetadata: {
-    siteTitle: "Shaun Jackson Software & Data Blog",
+    siteTitle: "Shaun Jackson Software & Data Science Blog",
     siteTitleAlt: "Shaun Jackson",
     siteLogo: "/icon.jpeg",
     siteUrl: "https://shaunjacks.com",
