@@ -1,0 +1,112 @@
+---
+title: "Gradient Descent and Linear Regression"
+author: "Shaun Jackson"
+date: "2019-10-24"
+featuredImage:
+tags: ["Machine Learning", "Cost Function", "Gradient Descent"]
+categories: ["Machine Learning"]
+template: "blog"
+---
+
+import "../../../../src/global.css"
+
+## Achknowledements
+
+I am currently taking Andrew Ng's [Machine Learning Course](https://www.coursera.org/learn/machine-learning) on Coursera. This blog is a summary of parts of the course.
+
+In order to perform **Linear Regression**, we must first understand these ideas:
+
+- Hypothesis equation
+- Cost Function
+- Gradient Descent
+  - Learning rate
+
+## Hypothesis equation
+
+A hypothesis equation is like any equation we learned way back when: $f(x)$.
+
+For example, it can be $f(x) = mx + b$
+
+In this case, $f(x)$ would be result of our hypothesis function, and $m$ would be one of our parameters, and $b$ is another parameter. $x$ is a feature that we would like to predict.
+
+Just as we think of $f(x)$, we can call our hypothesis equation $h(x)$.
+
+Where $x$ is a feature that we would like to predict, and $h(x)$ is our prediction.
+
+The $m$ and $b$ in $f(x) = mx + b$, could be thought of as our parameters, in our hypothesis equation, aka $\theta_{1}$ and $\theta_{2}$.
+
+This leaves us with $h_{\theta}(x)$, where ${\theta}$ represents our parameters and $x$ represents our features and $h_{\theta}(x)$ represents our predicted hypothetical value.
+
+## Cost Function
+
+$$
+J(\theta) = \frac{1}{2}(h_{\theta}(x) - y)^2
+$$
+
+- The cost function can be broken down into 5 steps:
+
+Given a **predicted** value, which is the result of a hypothesis equation
+
+- $h_{\theta}(x)$
+
+and an **actual** value based off of the data:
+
+- $y$,
+
+1. Take the **difference** between the predicted and actual value
+2. **Square** the difference
+3. **Repeat 1 and 2 for all observations** and sum these values together
+4. **Divide** by twice the number of observations
+
+### Cost
+
+This result is equal to the cost of an equation: $J(\theta)$.
+
+You could think of cost like how much error there is between the prediction value of a given hypothesis equation and the actual value.
+
+The goal to finding an optimal $h_{\theta}(x)$ would therefore be to **minimize the cost**.
+
+How can we minimize cost to find the optimal hypothesis equation that most accurately fits our data?
+
+## Gradient Descent
+
+Imagine we are **high up**, and decide to begin **descending** down a **gradient**, one **step** at a time, until we reach the **bottom**.
+
+How high we are can be thought of the cost, and the lower we go, would be the lower the cost is.
+
+Leaving the high level description, here is the equation to iteratively descend:
+
+Repeat until we reach convergence (the bottom)
+
+$
+\theta_{j} := \theta_{j} - \alpha\frac{\partial}{\partial\theta_{j}}J(\theta)
+$
+
+Lets break this down:
+
+- $ \frac{\partial}{\partial\theta_{j}}J(\theta)$ is the partial derivative of $J(\theta)$ with respect to $\theta_{j}$
+
+  - By taking the partial derivative, we are measuring the rate of change that that specific parameter has (it's slope).
+
+  - So $\frac{\partial}{\partial\theta_{j}}J(\theta)$ is the rate of change that specific parameter $\theta_{j}$ has
+
+- $\alpha$ is the learning rate (how fast we descend).
+
+Our descent begins every time we subtract $ - \alpha\frac{\partial}{\partial\theta_{j}}J(\theta)
+$ on every parameter $\theta_{j}$ or every time we subtract our learning rate times the rate of change of every parameter on each parameter.
+
+Our descent ends once $\theta_{j}$ reaches convergence for all $j$ parameters.
+
+Once our descent ends, we should have the optimal parameters that best minimizes the cost function $J(\theta)$, and these parameters will go into our hypothesis function $h_{\theta}(x)$ which will now be the best fit equation.
+
+Here is a useful quote from the course:
+
+> The point of all this is that if we start with a guess for our hypothesis and then repeatedly apply these gradient descent equations, our hypothesis will become more and more accurate.
+
+Once we have our hypothesis equation as accurate as it can be, we have.... a linear regression model.
+
+## Linear Regression
+
+Putting it all together,
+
+In order to perform linear regression (find the best fit line (best hypothesis) given a set of data points), we apply the gradient descent algorithm described above to find the optimal parameters for our hypothesis equation.
