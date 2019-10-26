@@ -10,11 +10,7 @@ template: "blog"
 
 import "../../../../src/global.css"
 
-## Achknowledements
-
-I am currently taking Andrew Ng's [Machine Learning Course](https://www.coursera.org/learn/machine-learning) on Coursera. This blog is a summary of parts of the course.
-
-In order to perform **Linear Regression**, we must first understand these ideas:
+In order to perform the **Gradient Descent** version of **Linear Regression**, we must first understand these ideas:
 
 - Hypothesis equation
 - Cost Function
@@ -116,7 +112,9 @@ Lets break this down:
   - this is how we get the slope of this line:
     ![png](cost-fxn-tangent.png)
 
-* $\alpha$ is the learning rate (how fast we descend).
+- $\alpha$ is the learning rate (how fast we descend).
+  - If $\alpha$ is too large, gradient descent fails to descend
+  - If $\alpha$ is too small, gradient descent will take tiny steps, and therefore takes a long time to descend.
 
 Our descent begins every time we subtract $ - \alpha\frac{\partial}{\partial\theta_{j}}J(\theta)
 $ on every parameter $\theta_{j}$ or every time we subtract our learning rate times the rate of change of every parameter on each parameter.
@@ -131,17 +129,17 @@ Our descent ends once $\theta_{j}$ reaches convergence for all $j$ parameters.
 
 Once our descent ends, we should have the optimal parameters that best minimizes the cost function $J(\theta)$, and these parameters will go into our hypothesis function $h_{\theta}(x)$ which will now be the best fit equation.
 
-Here is a useful quote from the course:
+Here is a useful quote from Andrew Ng's Machine Learning course:
 
 > The point of all this is that if we start with a guess for our hypothesis and then repeatedly apply these gradient descent equations, our hypothesis will become more and more accurate.
 
 Once we have our hypothesis equation as accurate as it can be, we have.... a linear regression model.
 
-**Note** this was an optimal example, there are cases where gradient descent converges towards a local optima that is not the global optima.
-
 I also should emphasize that the visualizations for this example are for only 1 $\theta_{j}$. This process would happen for all $\theta_{j}$ parameters in our $h_\theta(x)$ equation. In this example: $\theta_{0}$ and $\theta_{1}$.
 
-If we wanted to calculate all the partial derivatives at once, and in turn, update all parameters $\theta_{j}$, we can use the gradient vector, noted as $\nabla_{\theta}J(\theta)$, where $\nabla_{\theta}J(\theta) = \frac{2}{m}X^{T}(X\theta - y)$
+If we wanted to calculate all the partial derivatives at once, and in turn, update all parameters $\theta_{j}$, we can use the **gradient** vector, noted as $\nabla_{\theta}J(\theta)$, where $\nabla_{\theta}J(\theta) = \frac{2}{m}X^{T}(X\theta - y)$
+
+Think of the **Gradient** in this context as a vector that holds all the rates of changes for each parameter $\theta_{j}$
 
 And use that to solve for each new $\theta$:
 
@@ -163,7 +161,7 @@ We will start with an equation where we know the parameters in order to generate
 import numpy as np
 import matplotlib.pyplot as plt
 
-# generate 100 x values between 0 and 3
+# generate 100 x values between 0 and 2
 X = 2 * np.random.rand(100, 1)
 # generate y values with some random offset
 # from the standard normal distribution
@@ -180,61 +178,69 @@ ax.scatter(X, y)
 
 ![png](output_1_1.png)
 
-The code we just wrote would be the same as $Y = 7X_{1} + 2X_{0}$ with some random offset data. Where $X_{0} = 1$
+The code we just wrote would be the same as $Y = 7X_{1} + 2X_{0}$ with some random offset data. Where $X_{0} = 1$, and $X_{1}$ = `X`.
 
-We will now add the X0 term to our matrix X
+In order to obtain our Matrix $X$, we need to add the $X_{0}$ term to our $X_{1}$ term by concatenating both arrays together.
 
 ```python
-# concatenate 100 1s to our 100 X1 values between 0 and 1
+# concatenate 100 X0s to our 100 X1 values
 X_matrix = np.c_[np.ones((100, 1)), X]
 ```
 
 This `X_matrix` now can fulfill the hypthesis equation with:
 $h_{\theta}(X) = \theta X$
 
-Where we take the dot product of $\theta$ and $X$
+Where we take the dot product of $\theta$ and $X$ to calculate $h_{\theta}(X)$.
 
-Lets now define our variables for the equations:
-
-$\nabla_{\theta}J(\theta) = \frac{2}{m}X^{T}(X\theta - y)$
-
-and
+Remember our gradient descent equation:
 
 $
 \theta^{next} = \theta - \alpha\nabla_{\theta}J(\theta)
 $
 
+To represent this in Python, we must first calculate $\nabla_{\theta}J(\theta)
+$ using this equation:
+
+$\nabla_{\theta}J(\theta) = \frac{2}{m}X^{T}(X\theta - y)$.
+
+Here is a variable name map to our equations map:
+
+- `theta` = $\theta$
+- `alpha` = $\alpha$
+- `m` = $m$
+- `gradients` = $\nabla_{\theta}J(\theta)$
+
 ```python
 # Learning rate
 alpha = 0.1
+# How many updates will we  make upon theta
 iterations = 1000
 # m is the number of observations
 m = 100
-
 # randomly initialize our theta values
 theta = np.random.randn(2, 1)
 ```
 
-So we can now infer every variable in our equations from the variables `X_matrix`, `alpha`, `theta`, `m`, and `y`.
-
-Lets put our equation $\nabla_{\theta}J(\theta) = \frac{2}{m}X^{T}(X\theta - y)$ into a function.
+To calculate $\nabla_{\theta}J(\theta)$ within $\nabla_{\theta}J(\theta) = \frac{2}{m}X^{T}(X\theta - y)$, we will use the function `calculate_gradients`:
 
 ```python
 def calculate_gradients(m, X, theta, y):
     return 2/m * X.T.dot(X.dot(theta) - y)
 ```
 
-We will now loop through each iteration, updating our theta parameters accordingly to implement this equation on every iteration:
-
-$
+We will now loop through each iteration, updating our theta parameters accordingly to implement $
 \theta^{next} = \theta - \alpha\nabla_{\theta}J(\theta)
-$
+$ on every iteration:
 
 ```python
 for iteration in range(iterations):
+    # First calculate the  gradient of our  cost function
     gradients = calculate_gradients(m, X_matrix, theta, y)
+    # Now, apply gradient descent by updating theta
     theta = theta - alpha * gradients
 ```
+
+Our calculated `theta` values become this after gradient descent:
 
 ```python
 theta
@@ -243,22 +249,38 @@ theta
     array([[2.21322362],
            [6.82198367]])
 
-Now lets plot our Linear Regression line with the new theta values
+Remember when we generated our data? The data was generated with the equation:
+
+$Y = 7X_{1} + 2X_{0}$ `+ offset-term`
+
+Where $\theta_{1}$ = `7` and $\theta_{2}$ = `2`.
+Our calculated thetas were $\theta_{1}$ = `6.82` and $\theta_{0}$ = `2.213`.
+
+As you can see, the gradient descent algorithm correctly found the optimal `thetas` to best fit our original data!
+
+Plotting our Linear Regression line with the new theta values:
 
 ```python
+# defining our hypothesis equation
 def h(theta, X):
     return X.dot(theta)
 ```
-
-And plot our data with the optimized line
 
 ```python
 fig = plt.figure()
 ax = fig.add_subplot(111)
 ax.set(title='Gradient Descent Linear Regression Example',
  ylabel='y', xlabel="X")
+ # Plot orginal data points
 ax.scatter(X, y)
+# Plot our linear regression  line
 ax.plot(X, h(theta, X_matrix), color='red', linewidth=3)
 ```
 
 ![png](output_14_1.png)
+
+## Achknowledements
+
+I am currently taking Andrew Ng's [Machine Learning Course](https://www.coursera.org/learn/machine-learning) on Coursera, this blog has been a summary of parts of the course.
+
+[Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 2nd Edition](https://www.amazon.com/Hands-Machine-Learning-Scikit-Learn-TensorFlow/dp/1492032646) was another great resource in showing how to implement the theory with `python`.
