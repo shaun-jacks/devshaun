@@ -2,7 +2,7 @@
 title: "Gradient Descent and Linear Regression"
 author: "Shaun Jackson"
 date: "2019-10-24"
-featuredImage:
+featuredImage: ./cost-fxn-tangent.png
 tags: ["Machine Learning", "Cost Function", "Gradient Descent"]
 categories: ["Machine Learning"]
 template: "blog"
@@ -127,7 +127,7 @@ Our descent ends once $\theta_{j}$ reaches convergence for all $j$ parameters.
 
 - Notice how the rate of change (the slope) of that tangent line is also zero
   - This is how Gradient Descent stops when we reach convergence!
-    - Because our term: $\frac{\partial}{\partial\theta_{j}}J(\theta)$ from the equation $\theta_{j} := \theta_{j} - \alpha\frac{\partial}{\partial\theta_{j}}J(\theta)$ is now zero, and therefore there are no more updates on $\theta_{h}$
+    - Because our term: $\frac{\partial}{\partial\theta_{j}}J(\theta)$ from the equation $\theta_{j} := \theta_{j} - \alpha\frac{\partial}{\partial\theta_{j}}J(\theta)$ is now zero, and therefore there are no more updates on $\theta_{j}$
 
 Once our descent ends, we should have the optimal parameters that best minimizes the cost function $J(\theta)$, and these parameters will go into our hypothesis function $h_{\theta}(x)$ which will now be the best fit equation.
 
@@ -141,8 +141,124 @@ Once we have our hypothesis equation as accurate as it can be, we have.... a lin
 
 I also should emphasize that the visualizations for this example are for only 1 $\theta_{j}$. This process would happen for all $\theta_{j}$ parameters in our $h_\theta(x)$ equation. In this example: $\theta_{0}$ and $\theta_{1}$.
 
-## Linear Regression
+If we wanted to calculate all the partial derivatives at once, and in turn, update all parameters $\theta_{j}$, we can use the gradient vector, noted as $\nabla_{\theta}J(\theta)$, where $\nabla_{\theta}J(\theta) = \frac{2}{m}X^{T}(X\theta - y)$
+
+And use that to solve for each new $\theta$:
+
+$$
+\theta^{next} = \theta - \alpha\nabla_{\theta}J(\theta)
+$$
+
+Let's implement this in python!
+
+## Linear Regression with Python implementation
 
 Putting it all together,
 
 In order to perform linear regression (find the best fit line (best hypothesis) given a set of data points), we apply the gradient descent algorithm described above to find the optimal parameters for our hypothesis equation.
+
+We will start with an equation where we know the parameters in order to generate our data:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# generate 100 x values between 0 and 3
+X = 2 * np.random.rand(100, 1)
+# generate y values with some random offset
+# from the standard normal distribution
+y = 2 + 7 * X + np.random.randn(100, 1)
+```
+
+```python
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.set(title='Gradient Descent Linear Regression Example',
+ ylabel='y', xlabel="X")
+ax.scatter(X, y)
+```
+
+![png](output_1_1.png)
+
+The code we just wrote would be the same as $Y = 7X_{1} + 2X_{0}$ with some random offset data. Where $X_{0} = 1$
+
+We will now add the X0 term to our matrix X
+
+```python
+# concatenate 100 1s to our 100 X1 values between 0 and 1
+X_matrix = np.c_[np.ones((100, 1)), X]
+```
+
+This `X_matrix` now can fulfill the hypthesis equation with:
+$h_{\theta}(X) = \theta X$
+
+Where we take the dot product of $\theta$ and $X$
+
+Lets now define our variables for the equations:
+
+$\nabla_{\theta}J(\theta) = \frac{2}{m}X^{T}(X\theta - y)$
+
+and
+
+$
+\theta^{next} = \theta - \alpha\nabla_{\theta}J(\theta)
+$
+
+```python
+# Learning rate
+alpha = 0.1
+iterations = 1000
+# m is the number of observations
+m = 100
+
+# randomly initialize our theta values
+theta = np.random.randn(2, 1)
+```
+
+So we can now infer every variable in our equations from the variables `X_matrix`, `alpha`, `theta`, `m`, and `y`.
+
+Lets put our equation $\nabla_{\theta}J(\theta) = \frac{2}{m}X^{T}(X\theta - y)$ into a function.
+
+```python
+def calculate_gradients(m, X, theta, y):
+    return 2/m * X.T.dot(X.dot(theta) - y)
+```
+
+We will now loop through each iteration, updating our theta parameters accordingly to implement this equation on every iteration:
+
+$
+\theta^{next} = \theta - \alpha\nabla_{\theta}J(\theta)
+$
+
+```python
+for iteration in range(iterations):
+    gradients = calculate_gradients(m, X_matrix, theta, y)
+    theta = theta - alpha * gradients
+```
+
+```python
+theta
+```
+
+    array([[2.21322362],
+           [6.82198367]])
+
+Now lets plot our Linear Regression line with the new theta values
+
+```python
+def h(theta, X):
+    return X.dot(theta)
+```
+
+And plot our data with the optimized line
+
+```python
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.set(title='Gradient Descent Linear Regression Example',
+ ylabel='y', xlabel="X")
+ax.scatter(X, y)
+ax.plot(X, h(theta, X_matrix), color='red', linewidth=3)
+```
+
+![png](output_14_1.png)
