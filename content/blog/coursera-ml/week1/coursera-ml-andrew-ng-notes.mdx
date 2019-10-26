@@ -23,19 +23,19 @@ In order to perform **Linear Regression**, we must first understand these ideas:
 
 ## Hypothesis equation
 
-A hypothesis equation is like any equation we learned way back when: $f(x)$.
+A hypothesis equation is like any equation we learned way back when: $f(x) = mx + b$
 
-For example, it can be $f(x) = mx + b$
+In this case, $f(x)$ would be our predicted value, or our **hypothesis**. $m$ and $b$ would be our **parameters**. $x$ would be one of our variables that we would use as part of our **prediction**.
 
-In this case, $f(x)$ would be result of our hypothesis function, and $m$ would be one of our parameters, and $b$ is another parameter. $x$ is a feature that we would like to predict.
+Changing our notation to something more formal, we can think of $f(x)$ as our hypothesis function: $h(x)$. The parameters $m$ and $b$ could be notated as $\theta_{0}$ and $\theta_{1}$. Our variable $x$ could stay the same.
 
-Just as we think of $f(x)$, we can call our hypothesis equation $h(x)$.
+We would therefore have our hypothesis equation: $h(x) = \theta_{1}x + \theta_{0}$.
 
-Where $x$ is a feature that we would like to predict, and $h(x)$ is our prediction.
+The purpose of this equation in Linear Regression is that we are trying to find the best hypothesis that most closely represents our actual data.
 
-The $m$ and $b$ in $f(x) = mx + b$, could be thought of as our parameters, in our hypothesis equation, aka $\theta_{1}$ and $\theta_{2}$.
+We are trying to see, what are the best parameters, $\theta_{0}$ and $\theta_{1}$, in the equation $h(x) = \theta_{1}x + \theta_{0}$ that would allow our $h(x)$ (the predicted value) to equal the actual value, which we could call $y$.
 
-This leaves us with $h_{\theta}(x)$, where ${\theta}$ represents our parameters and $x$ represents our features and $h_{\theta}(x)$ represents our predicted hypothetical value.
+In order to do that we must introduce something called the...
 
 ## Cost Function
 
@@ -43,7 +43,7 @@ $$
 J(\theta) = \frac{1}{2}(h_{\theta}(x) - y)^2
 $$
 
-- The cost function can be broken down into 5 steps:
+- The cost function can be broken down into 4 steps:
 
 Given a **predicted** value, which is the result of a hypothesis equation
 
@@ -66,15 +66,39 @@ You could think of cost like how much error there is between the prediction valu
 
 The goal to finding an optimal $h_{\theta}(x)$ would therefore be to **minimize the cost**.
 
+By minimizing $J(\theta)$, we would therefore minimize how much error there is between the results of our hypothesis equation, and our actual data.
+
 How can we minimize cost to find the optimal hypothesis equation that most accurately fits our data?
 
 ## Gradient Descent
 
-Imagine we are **high up**, and decide to begin **descending** down a **gradient**, one **step** at a time, until we reach the **bottom**.
+Gradient Descent is an algorithm that can be applied in order to minimize the cost.
 
-How high we are can be thought of the cost, and the lower we go, would be the lower the cost is.
+Intuitively, imagine we have a plot of our cost function that looks like this:
 
-Leaving the high level description, here is the equation to iteratively descend:
+![png](cost-fxn-start.png)
+
+Where the red dot is the cost when our $\theta_{1} = 8$.
+
+The goal is to get our cost $J(\theta)$ to here:
+
+![png](cost-fxn-end.png)
+
+In order to do this, we must use the rate of change where we started, and iteratively move that point to the bottom.
+
+Looking at the rate of change:
+
+![png](cost-fxn-tangent.png)
+
+Which is that red tangent line (whose slope is our derivative), we can use that term, to move $\theta$ to the bottom.
+
+Remember, when $J(\theta)$ is low, we would now have the optimal parameters, $\theta_{0}$ and $\theta_{1}$ within the the hypothesis equation:
+
+- $h(x) = \theta_{1}x + \theta_{0}$.
+
+that optimally predicts data in relation to the actual data $y$.
+
+Here is the equation to iteratively descend our cost $J(\theta)$:
 
 Repeat until we reach convergence (the bottom)
 
@@ -88,14 +112,22 @@ Lets break this down:
 
   - By taking the partial derivative, we are measuring the rate of change that that specific parameter has (it's slope).
 
-  - So $\frac{\partial}{\partial\theta_{j}}J(\theta)$ is the rate of change that specific parameter $\theta_{j}$ has
+  - So $\frac{\partial}{\partial\theta_{j}}J(\theta)$ is the rate of change that specific parameter $\theta_{j}$ has,
+  - this is how we get the slope of this line:
+    ![png](cost-fxn-tangent.png)
 
-- $\alpha$ is the learning rate (how fast we descend).
+* $\alpha$ is the learning rate (how fast we descend).
 
 Our descent begins every time we subtract $ - \alpha\frac{\partial}{\partial\theta_{j}}J(\theta)
 $ on every parameter $\theta_{j}$ or every time we subtract our learning rate times the rate of change of every parameter on each parameter.
 
 Our descent ends once $\theta_{j}$ reaches convergence for all $j$ parameters.
+
+![png](cost-fxn-tangent-end.png)
+
+- Notice how the rate of change (the slope) of that tangent line is also zero
+  - This is how Gradient Descent stops when we reach convergence!
+    - Because our term: $\frac{\partial}{\partial\theta_{j}}J(\theta)$ from the equation $\theta_{j} := \theta_{j} - \alpha\frac{\partial}{\partial\theta_{j}}J(\theta)$ is now zero, and therefore there are no more updates on $\theta_{h}$
 
 Once our descent ends, we should have the optimal parameters that best minimizes the cost function $J(\theta)$, and these parameters will go into our hypothesis function $h_{\theta}(x)$ which will now be the best fit equation.
 
@@ -104,6 +136,10 @@ Here is a useful quote from the course:
 > The point of all this is that if we start with a guess for our hypothesis and then repeatedly apply these gradient descent equations, our hypothesis will become more and more accurate.
 
 Once we have our hypothesis equation as accurate as it can be, we have.... a linear regression model.
+
+**Note** this was an optimal example, there are cases where gradient descent converges towards a local optima that is not the global optima.
+
+I also should emphasize that the visualizations for this example are for only 1 $\theta_{j}$. This process would happen for all $\theta_{j}$ parameters in our $h_\theta(x)$ equation. In this example: $\theta_{0}$ and $\theta_{1}$.
 
 ## Linear Regression
 
