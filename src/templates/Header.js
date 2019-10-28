@@ -3,6 +3,7 @@ import Navbar from "./Navbar"
 import { Helmet } from "react-helmet"
 import config from "../config/config"
 import urljoin from "url-join"
+import Cookies from "js-cookie"
 
 const Header = ({ postSEO, pageSEO }) => {
   const { siteMetadata } = config
@@ -12,7 +13,9 @@ const Header = ({ postSEO, pageSEO }) => {
     siteLogo,
     siteUrl,
     pathPrefix,
+    googleAnalyticsID,
   } = siteMetadata
+  const CookiesEnabled = Cookies.get("CookieConsent")
 
   let metaTitle = postSEO
     ? `${postSEO.frontmatter.title} - ${siteTitle}`
@@ -53,6 +56,24 @@ const Header = ({ postSEO, pageSEO }) => {
         <meta name="twitter:title" content={metaTitle} />
         <meta name="twitter:image" content={metaImage} />
         <meta name="twitter:description" content={metaDescription} />
+        {/* Global site tag (gtag.js) - Google Analytics  */}
+        {CookiesEnabled && (
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsID}`}
+          ></script>
+        )}
+        {CookiesEnabled && (
+          <script>
+            {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', '${googleAnalyticsID}');
+        `}
+          </script>
+        )}
       </Helmet>
       <Navbar />
     </React.Fragment>

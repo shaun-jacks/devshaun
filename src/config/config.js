@@ -33,6 +33,7 @@ const config = {
           "https://drive.google.com/file/d/1F8nhcfUE5EIyxGxLdlzluxhm__6UauV4/view?usp=sharing",
       },
     ],
+    googleAnalyticsID: "G-2K9HN6P0GR",
   },
 }
 

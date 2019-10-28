@@ -28,6 +28,8 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+/* --bg: #1c1f2b; */
 body.dark {
   --bg: #1c1f2b;
   --button: #2d3143;
