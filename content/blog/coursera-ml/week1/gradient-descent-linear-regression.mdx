@@ -9,9 +9,10 @@ tags:
     "Cost Function",
     "Gradient Descent",
     "Python",
+    "R",
     "Linear Regression",
   ]
-categories: ["Machine Learning"]
+categories: ["Machine Learning", "R", "Python"]
 template: "blog"
 ---
 
@@ -156,7 +157,7 @@ $$
 
 Let's implement this in python!
 
-## Linear Regression with Python implementation
+## Gradient Descent and Linear Regression with Python implementation
 
 Putting it all together,
 
@@ -286,8 +287,131 @@ ax.plot(X, h(theta, X_matrix), color='red', linewidth=3)
 
 ![png](output_14_1.png)
 
-## Achknowledements
+## Gradient Descent and Linear Regression R implementation
+
+Lets first generate the same data as we had done earlier, with 100
+random values for `X1` between `0` and `2`, and our equation for `y`:
+`y = 2 + 7 * X + random noise`
+
+```r
+# Create our X matrix
+X0 <- rep(1, times = 100)
+X1 <- runif(100, min=0, max=2)
+X <- matrix(c(X0, X1), ncol=2)
+colnames(X) <- c("X0", "X1")
+head(X)
+```
+
+```
+##      X0        X1
+## [1,]  1 1.7752804
+## [2,]  1 1.1690086
+## [3,]  1 0.6181976
+## [4,]  1 0.2648888
+## [5,]  1 1.8832422
+## [6,]  1 0.2968584
+```
+
+We will now use our theta values to create our data
+
+```r
+theta0 <- 2
+theta1 <- 7
+Theta <- matrix(c(theta0, theta1), nrow=2)
+row.names(Theta) <- c("theta0", "theta1")
+Theta
+```
+
+```
+##        [,1]
+## theta0    2
+## theta1    7
+```
+
+Next we will implement our hypothesis function
+
+```r
+y <- X %*% Theta + rnorm(100)
+```
+
+Plotting our sample data
+
+```r
+plot(X[,"X1"], y, ylab="y", xlab="x1", main="Sample Data")
+```
+
+![png](gradient-linear_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+
+The next step would be to implement our equations:
+
+$\nabla_{\theta}J(\theta) = \frac{2}{m}X^{T}(X\theta - y)$.
+
+$
+\theta^{next} = \theta - \alpha\nabla_{\theta}J(\theta)
+$
+
+```r
+# Learning rate
+alpha = 0.1
+iterations = 1000
+# number of observations
+m = nrow(X)
+# randomly choose theta
+Theta = matrix(rnorm(2), nrow=2)
+rownames(Theta) <- c("theta0", "theta1")
+Theta
+```
+
+```
+##             [,1]
+## theta0 1.7300766
+## theta1 0.4775213
+```
+
+Implement our gradient descent algorithm
+
+```r
+print(paste0("Iteration: ", 0,
+              "; Theta0 = ", Theta["theta0", ],
+              ", Theta1 = ", Theta["theta1", ]))
+
+for(i in 1:iterations) {
+  # First calculate the  gradient of our  cost function
+  gradients = 2/m * t(X) %*% (X %*% Theta - y)
+  # Now, apply gradient descent by updating theta
+  Theta = Theta - alpha * gradients
+  if (!(i %% 200)) {
+    print(paste0("Iteration: ", i,
+                  "; Theta0 = ",
+                  Theta["theta0", ], ", Theta1 = ", Theta["theta1", ]))
+  }
+}
+```
+
+```
+## [1] "Iteration: 0; Theta0 = 1.7300766274575, Theta1 = 0.477521321383724"
+## [1] "Iteration: 200; Theta0 = 2.04703159560097, Theta1 = 6.98666808306305"
+## [1] "Iteration: 400; Theta0 = 2.04422953417397, Theta1 = 6.98907048177482"
+## [1] "Iteration: 600; Theta0 = 2.04422694609763, Theta1 = 6.9890727007095"
+## [1] "Iteration: 800; Theta0 = 2.04422694370719, Theta1 = 6.98907270275898"
+## [1] "Iteration: 1000; Theta0 = 2.04422694370499, Theta1 = 6.98907270276087"
+```
+
+Plotting our line with the calculated thetas
+
+```r
+plot(X[,"X1"], y, ylab="y", xlab="x1", main="Sample Data", col="blue")
+abline(a=Theta["theta0", 1], b=Theta["theta1", 1], col="red")
+```
+
+![png](gradient-linear_files/figure-markdown_strict/unnamed-chunk-7-1.png)
+
+## Acknowledements
 
 I am currently taking Andrew Ng's [Machine Learning Course](https://www.coursera.org/learn/machine-learning) on Coursera, this blog has been a summary of parts of the course.
 
 [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 2nd Edition](https://www.amazon.com/Hands-Machine-Learning-Scikit-Learn-TensorFlow/dp/1492032646) was another great resource in showing how to implement the theory with `python`.
+
+```
+
+```
