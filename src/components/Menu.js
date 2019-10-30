@@ -144,6 +144,7 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
                   listStyleType: `none`,
                   padding: `0rem 1rem`,
                   color: "#001E30",
+                  margin: "0em auto",
                 }}
               >
                 {link.name === "Resume" ? (
@@ -152,6 +153,7 @@ const Menu = ({ siteTitle, menuLinks, drawerOpen, toggleOpen, open }) => {
                       position: "relative",
                       padding: "0.5rem 0",
                       letterSpacing: "2px",
+                      margin: "0em auto",
                     }}
                     href={link.link}
                   >

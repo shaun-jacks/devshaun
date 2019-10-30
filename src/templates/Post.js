@@ -6,6 +6,8 @@ import Img from "gatsby-image"
 import styled from "styled-components"
 import TagList from "../components/TagList"
 import Comments from "./Comments"
+import TableOfContents from "../components/TableOfContents"
+import "../global.css"
 
 const PostWrapper = styled.div``
 
@@ -33,6 +35,10 @@ class PageTemplate extends Component {
               style={{ marginBottom: "2em" }}
             />
           )}
+          <TableOfContents
+            sectionList={mdx.tableOfContents.items}
+            slug={mdx.fields.slug}
+          />
           <MDXRenderer>{mdx.body}</MDXRenderer>
           <Comments slug={mdx.fields.slug} />
         </PostWrapper>
@@ -52,6 +58,7 @@ export const pageQuery = graphql`
       fields {
         slug
       }
+      tableOfContents(maxDepth: 3)
       excerpt(pruneLength: 60)
       frontmatter {
         title

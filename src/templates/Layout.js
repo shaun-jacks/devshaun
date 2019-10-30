@@ -45,7 +45,8 @@ const Layout = ({ children, postSEO, pageSEO }) => {
         }}
       >
         By using <Link to="/">shaunjacks.com</Link>, you accept our{" "}
-        <Link to="/cookie-policy">Cookie Policy</Link>.
+        <Link to="/cookie-policy">Cookie Policy</Link> and{" "}
+        <Link to="/privacy-policy">Privacy Policy</Link>.
       </CookieConsent>
       <div>
         <div>
