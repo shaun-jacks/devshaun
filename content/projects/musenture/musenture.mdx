@@ -1,0 +1,121 @@
+---
+title: "Musenture"
+author: "Shaun Jackson"
+startDate: "2019-10-31"
+endDate: "2019-11-14"
+skills: ["React.js", "Redux", "Node.js", "MongoDB", "HTML", "CSS", "JWTs"]
+featuredImage: ./Musenture.png
+description: "A Full Stack Music Social Media Application with React.js / Redux frontend and a Node.js and MongoDB backend."
+template: "project"
+---
+
+## Project Links
+
+- Project URL: [https://musenture-fcc94.firebaseapp.com/](https://musenture-fcc94.firebaseapp.com/)
+- Github URL Frontend: [https://github.com/shaun-jacks/musenture-frontend](https://github.com/shaun-jacks/musenture-frontend)
+- Github URL Backend: [https://github.com/shaun-jacks/musenture-backend](https://github.com/shaun-jacks/musenture-backend)
+
+## Technologies Used
+
+This is an ongoing full stack application.
+
+The frontend stack consists of:
+
+- [React](https://reactjs.org)
+- [Redux](https://redux.js.org/)
+- [styled components](https://www.styled-components.com/)
+
+The backend is developed with:
+
+- [Node JS](https://nodejs.org/en/)
+- [MongoDB](https://www.mongodb.com/)
+
+The project is being hosted with three cloud services:
+
+- [Google Firebase](https://firebase.google.com/) for the frontend
+- [Heroku](https://www.heroku.com/) for the backend
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) for the database
+
+## Brief description
+
+This is a music social media application where a user can
+
+- create their own account
+- follow/unfollow users
+- create a jam session where other users can join
+- Edit their own account
+
+The data is stored in a MongoDb Atlas cloud database. All actions and frontend asynchronous calls are handled by Redux for state management.
+
+The website is fully responsive via css media queries, the use of css grid to change navbar locations, and css flexbox for flex-wrapping jam sessions and users.
+
+## Features
+
+### Register for an account
+
+- Local login strategy used that requires email and password
+- password hashed before stored in database
+
+![png](musenture-register.png)
+
+### Login
+
+- When a user logs in, email and password searched in database, if match, JSON Web Token generated and sent to client's localStorage
+- Authorized calls verify JSON webtoken via middleware on backend.
+
+![png](musenture-login.png)
+
+### Follow / Unfollow other users
+
+- User can follow other users
+
+![png](musenture-userpage.png)
+
+### Create a Jam!
+
+- User can create a jam session via modal form
+
+![png](musenture-create-a-jam.png)
+
+### Edit profile
+
+- User can further edit their profile providing additional details such as display name, bio, and instrument played.
+
+![png](musenture-edit-profile.png)
+
+### Explore other jams
+
+- User gets a view of other jams in application
+
+![png](musenture-jamlist.png)
+
+### Explore other users
+
+- User gets a view of other users in application
+
+![png](musenture-profilelist.png)
+
+### Join other jam sessions
+
+- User can join other jam sessions posted by other users
+
+### User Actions require login
+
+The following actions require user login:
+
+- Joining a jam
+- Creating a jam
+- Editing a profile
+- Following a user
+
+If user is not logged in, a modal warning will be displayed.
+
+![png](musenture-authorize.png)
+
+## Motivation and Conclusion
+
+I wanted to combine my passion for music with my technical skills.
+
+This project taught me how to build an application from scratch with create-react-app and node.js, and how to tackle prioritize TODOs.
+
+It was another great experience seeing a project from beginning to end. It combines topics from user login and registration, social media applications, while handling data in the backend and creating a responsive frontend interface.

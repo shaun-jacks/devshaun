@@ -49,8 +49,8 @@ export default ({ data }) => {
           <p>
             As a curious soul, I value continual learning and am passionate
             about software engineering and data science. I bring 3+ years
-            experience- ranging from low level embedded systems to both frontend
-            and backend services.
+            experience- ranging from embedded systems to both frontend and
+            backend services.
           </p>
           <div
             style={{
